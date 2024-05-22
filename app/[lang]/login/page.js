@@ -86,7 +86,7 @@ export default function page() {
         {/* <!-- ./login with --> */}
 
         <p className="mt-4 text-center text-gray-600">
-          Don't have account?{" "}
+          {"Don't have account? "}
           <Link href="/register" className="text-primary">
             Register now
           </Link>
