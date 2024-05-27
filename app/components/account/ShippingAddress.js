@@ -1,19 +1,27 @@
 import Link from "next/link";
 
-export default function ShippingAddress() {
+export default function ShippingAddress({ ShippingAddress }) {
   return (
     <div className="shadow rounded bg-white px-4 pt-6 pb-8">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-medium text-gray-800 text-lg">Shipping address</h3>
-        <Link href="/account/shippingEdit/123" className="text-primary">
+        <Link
+          href={`/account/shippingEdit/${ShippingAddress?.id}`}
+          className="text-primary"
+        >
           Edit
         </Link>
       </div>
       <div className="space-y-1">
-        <h4 className="text-gray-700 font-medium">John Doe</h4>
-        <p className="text-gray-800">Medan, North Sumatera</p>
-        <p className="text-gray-800">20371</p>
-        <p className="text-gray-800">0811 8877 988</p>
+        <h4 className="text-gray-700 font-medium text-xl">
+          {ShippingAddress?.name}
+        </h4>
+        <p className="text-gray-800">{ShippingAddress?.email}</p>
+        <p className="text-gray-800">
+          {ShippingAddress?.city}, {ShippingAddress?.country}
+        </p>
+        <p className="text-gray-800">{ShippingAddress?.zip}</p>
+        <p className="text-gray-800">{ShippingAddress?.phone}</p>
       </div>
     </div>
   );

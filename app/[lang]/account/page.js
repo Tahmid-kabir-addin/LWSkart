@@ -25,9 +25,9 @@ export default async function page() {
         <div className=" grid grid-cols-3 gap-4 mx-auto max-w-5xl">
           <PersonalProfile user={user} />
 
-          <ShippingAddress />
+          <ShippingAddress ShippingAddress={user?.ShippingAddress} />
 
-          <BillingAddress />
+          <BillingAddress BillingAddress={user?.BillingAddress} />
         </div>
       </div>
     </>

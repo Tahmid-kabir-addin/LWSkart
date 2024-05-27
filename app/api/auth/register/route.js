@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export const POST = async (req, res) => {
   const { name, email, password, confirm, phone } = await req.json();
-  
+
   if (phone.length !== 11) {
     return new NextResponse("Phone number must be 11 digits", {
       status: 400,
@@ -39,7 +39,23 @@ export const POST = async (req, res) => {
   }
   try {
     await prisma.users.create({
-      data: user,
+      data: {
+        ...user,
+        ShippingAddress: {
+          create: {
+            email: user.email,
+            phone: user.phone,
+            name: user.name,
+          },
+        },
+        BillingAddress: {
+          create: {
+            email: user.email,
+            phone: user.phone,
+            name: user.name,
+          },
+        },
+      },
     });
     return new NextResponse("User has been created Successfully!", {
       status: 201,
