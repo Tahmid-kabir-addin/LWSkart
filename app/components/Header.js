@@ -1,10 +1,13 @@
+import { auth } from "@/auth";
 import { AccountIcon } from "@/public/assets/images/icons/Account";
 import { CartIconOutline } from "@/public/assets/images/icons/CartOutline";
 import { Heart } from "@/public/assets/images/icons/heart";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth();
+  console.log("🚀 ~ Header ~ session:", session);
   return (
     <header className="py-4 shadow-sm bg-white">
       <div className="container flex items-center justify-between">
@@ -59,15 +62,30 @@ export default function Header() {
               2
             </div>
           </Link>
-          <Link
-            href="/account"
-            className="flex flex-col gap-1 items-center text-center text-gray-700 hover:text-primary transition relative"
-          >
-            <div className="text-2xl">
-              <AccountIcon />
-            </div>
-            <div className="text-xs leading-3">Account</div>
-          </Link>
+
+          {session?.user ? (
+            <Link
+              href="/account"
+              className="flex flex-col gap-1 items-center text-center text-gray-700 hover:text-primary transition relative"
+            >
+              <div className="text-2xl">
+                {session.user.image ? (
+                  <Image
+                    src={session.user.image}
+                    alt="Account"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
+                ) : (
+                  <AccountIcon />
+                )}
+              </div>
+              <div className="text-xs leading-3">{session.user.name}</div>
+            </Link>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </header>

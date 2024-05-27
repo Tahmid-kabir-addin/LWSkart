@@ -1,7 +1,14 @@
+import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
+import LogoutButton from "./LogoutButton";
 
-export default function Navbar() {
+export default async function Navbar() {
+  // const path = usePathname();
+  let isLoginPage = false;
+  // if (path.includes("login") || path.includes("register")) isLoginPage = true;
+  const session = await auth();
+
   return (
     <nav className="bg-gray-800">
       <div className="container flex">
@@ -131,12 +138,16 @@ export default function Navbar() {
               Contact us
             </Link>
           </div>
-          <Link
-            href="/login"
-            className="text-gray-200 hover:text-white transition"
-          >
-            Login
-          </Link>
+          {session?.user ? (
+            <LogoutButton />
+          ) : (
+            <Link
+              href="/login"
+              className="text-gray-200 hover:text-white transition"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
