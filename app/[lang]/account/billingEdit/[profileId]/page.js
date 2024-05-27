@@ -1,5 +1,3 @@
 export default function page() {
-  return (
-    
-  );
+  return <h1>hello</h1>;
 }
