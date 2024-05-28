@@ -74,19 +74,6 @@ export default async function Navbar() {
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
-                src="/assets/images/icons/office.svg"
-                alt="Outdoor"
-                className="w-5 h-5 object-contain"
-                width={16}
-                height={16}
-              />
-              <span className="ml-6 text-gray-600 text-sm">Outdoor</span>
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-            >
-              <Image
                 src="/assets/images/icons/outdoor-cafe.svg"
                 alt="outdoor"
                 className="w-5 h-5 object-contain"
@@ -120,7 +107,7 @@ export default async function Navbar() {
               Home
             </Link>
             <Link
-              href="/shop"
+              href="/shop?category=all"
               className="text-gray-200 hover:text-white transition"
             >
               Shop

@@ -13,11 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-}
-
 model users {
   id              String           @id @default(auto()) @map("_id") @db.ObjectId
   email           String           @unique
@@ -53,4 +48,30 @@ model BillingAddress {
   name    String
   user    users  @relation(fields: [userId], references: [id])
   userId  String @unique @map("userId") @db.ObjectId
+}
+
+model Products {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  stock          Int      @default(0)
+  category       String
+  rating         Float
+  reviewCount    Int
+  brand          String
+  SKU            String
+  price          Float
+  compareAtPrice Float
+  description    String
+  image          String
+  createdAt      DateTime @default(now())
+  trending       Boolean  @default(false)
+  size           Size
+}
+
+enum Size {
+  XS
+  S
+  M
+  L
+  XL
 }
