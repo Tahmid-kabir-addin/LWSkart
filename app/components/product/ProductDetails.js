@@ -31,7 +31,7 @@ export default async function ProductDetails({ product }) {
           )}
 
           <Image
-            blurDataURL="/assets/images/blurImage"
+            blurDataURL="/assets/images/blurImage.jpg"
             src={product?.image}
             alt={product?.name}
             className="w-full"
@@ -42,7 +42,7 @@ export default async function ProductDetails({ product }) {
           />
           <div className="grid grid-cols-5 gap-4 mt-4">
             <Image
-              blurDataURL="/assets/images/blurImage"
+              blurDataURL="/assets/images/blurImage.jpg"
               src={product?.image}
               alt={product?.name}
               height={32}
@@ -51,7 +51,7 @@ export default async function ProductDetails({ product }) {
               className="w-full cursor-pointer border border-primary"
             />
             <Image
-              blurDataURL="/assets/images/blurImage"
+              blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/products/product3.jpg"
               alt="product2"
               height={32}
@@ -60,7 +60,7 @@ export default async function ProductDetails({ product }) {
               className="w-full cursor-pointer border"
             />
             <Image
-              blurDataURL="/assets/images/blurImage"
+              blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/products/product4.jpg"
               alt="product2"
               height={32}
@@ -69,7 +69,7 @@ export default async function ProductDetails({ product }) {
               className="w-full cursor-pointer border"
             />
             <Image
-              blurDataURL="/assets/images/blurImage"
+              blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/products/product5.jpg"
               alt="product2"
               height={32}
@@ -78,7 +78,7 @@ export default async function ProductDetails({ product }) {
               className="w-full cursor-pointer border"
             />
             <Image
-              blurDataURL="/assets/images/blurImage"
+              blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/products/product6.jpg"
               alt="product2"
               height={32}

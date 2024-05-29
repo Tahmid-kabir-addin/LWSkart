@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
         )}
 
         <Image
-          blurDataURL="/assets/images/blurImage"
+          blurDataURL="/assets/images/blurImage.jpg"
           src={product?.image}
           alt={product?.name}
           className="w-full"

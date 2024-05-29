@@ -1,21 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+let initialState = null;
 
-const initialState = {
-  loading: false,
-  cartItems: Cookies.get("cart")
-    ? JSON.parse(Cookies.get("cart")).cartItems
-    : [],
-  itemsPrice: Cookies.get("cart")
-    ? JSON.parse(Cookies.get("cart")).itemsPrice
-    : 0,
-  shippingPrice: Cookies.get("cart")
-    ? JSON.parse(Cookies.get("cart")).shippingPrice
-    : 0,
-  totalPrice: Cookies.get("cart")
-    ? JSON.parse(Cookies.get("cart")).totalPrice
-    : 0,
-};
+Cookies.get("cart")
+  ? (initialState = JSON.parse(Cookies.get("cart")))
+  : (initialState = {
+      cartItems: [],
+      itemsPrice: 0,
+      shippingPrice: 0,
+      totalPrice: 0,
+      loading: true,
+    });
 
 const serializeCartState = (state) => ({
   cartItems: state.cartItems,
@@ -29,9 +24,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      console.log("🚀 ~ action:", action);
       const item = action.payload;
-      console.log("🚀 ~ item:", item);
       const existItem = state.cartItems?.find((x) => x.id === item.id);
       if (!existItem) state.cartItems.push(action.payload);
       else {
@@ -45,7 +38,6 @@ const cartSlice = createSlice({
       );
       state.shippingPrice = state.itemsPrice > 100 ? 0 : 50;
       state.totalPrice = (state.itemsPrice + state.shippingPrice).toFixed(2);
-      console.log("🚀 ~ state:", state.cartItems);
       Cookies.set("cart", JSON.stringify(serializeCartState(state)));
     },
     removeFromCart: (state, action) => {
@@ -63,9 +55,13 @@ const cartSlice = createSlice({
     hideLoading: (state) => {
       state.loading = false;
     },
+    showLoading: (state) => {
+      state.loading = true;
+    },
   },
 });
 
-export const { addToCart, removeFromCart, hideLoading } = cartSlice.actions;
+export const { addToCart, removeFromCart, hideLoading, showLoading } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

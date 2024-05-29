@@ -1,10 +1,16 @@
 import CheckoutForm from "@/app/components/checkout/CheckoutForm";
 import OrderSummary from "@/app/components/checkout/OrderSummary";
+import { auth } from "@/auth";
 import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function page() {
+export default async function page() {
+  const session = await auth();
+  if (!session) {
+    redirect("/login");
+  }
   return (
     <>
       <div className="container py-4 flex items-center gap-3">
@@ -17,11 +23,8 @@ export default function page() {
         <p className="text-gray-600 font-medium">Checkout</p>
       </div>
 
-      <div className="container grid grid-cols-12 items-start pb-16 pt-4 gap-6">
-        <CheckoutForm />
-
         <OrderSummary />
-      </div>
+
     </>
   );
 }

@@ -22,6 +22,8 @@ model users {
   phone           String?
   ShippingAddress ShippingAddress?
   BillingAddress  BillingAddress?
+  Order           Order?           @relation(fields: [orderId], references: [id])
+  orderId         String?          @db.ObjectId
 }
 
 model ShippingAddress {
@@ -51,21 +53,52 @@ model BillingAddress {
 }
 
 model Products {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  stock          Int      @default(0)
-  category       String
-  rating         Float
-  reviewCount    Int
-  brand          String
-  SKU            String
-  price          Float
-  compareAtPrice Float
-  description    String
-  image          String
-  createdAt      DateTime @default(now())
-  trending       Boolean  @default(false)
-  size           Size
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  stock           Int               @default(0)
+  category        String
+  rating          Float
+  reviewCount     Int
+  brand           String
+  SKU             String
+  price           Float
+  compareAtPrice  Float
+  description     String
+  image           String
+  createdAt       DateTime          @default(now())
+  trending        Boolean           @default(false)
+  size            Size
+  OrderedProducts OrderedProducts[]
+}
+
+model OrderedProducts {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  product   Products @relation(fields: [productId], references: [id])
+  productId String   @map("productId") @db.ObjectId
+  quantity  Int
+  createdAt DateTime @default(now())
+  usersId   String?  @db.ObjectId
+  Order     Order?   @relation(fields: [orderId], references: [id])
+  orderId   String?  @db.ObjectId
+}
+
+model Order {
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String            @map("userId") @db.ObjectId
+  name            String
+  company         String?
+  region          String
+  address         String
+  city            String
+  phone           String
+  email           String
+  orderedProducts OrderedProducts[]
+  createdAt       DateTime          @default(now())
+  subTotalPrice   Float
+  totalPrice      Float
+  shippingPrice   Float
+  pdfLink         String?
+  users           users[]
 }
 
 enum Size {

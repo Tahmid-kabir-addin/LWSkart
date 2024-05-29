@@ -31,6 +31,9 @@ export default function RegForm() {
             id="name"
             className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
             placeholder="fulan fulana"
+            required
+            oninvalid="this.setCustomValidity('Please enter your name')"
+            oninput="this.setCustomValidity('')"
           />
         </div>
         <div></div>

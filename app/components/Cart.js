@@ -5,9 +5,10 @@ import { useSelector } from "react-redux";
 
 export default function Cart() {
   const { loading, cartItems } = useSelector((state) => state.cart);
+
   return (
     <Link
-      href="/checkout"
+      href="/cart"
       className="flex flex-col gap-1 items-center text-center text-gray-700 hover:text-primary transition relative"
     >
       <div className="text-2xl">

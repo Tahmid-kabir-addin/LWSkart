@@ -7,13 +7,13 @@ import Cart from "./Cart";
 
 export default async function Header() {
   const session = await auth();
-  console.log("🚀 ~ Header ~ session:", session);
+  // console.log("🚀 ~ Header ~ session:", session);
   return (
     <header className="py-4 shadow-sm bg-white">
       <div className="container flex items-center justify-between">
         <Link href="/">
           <Image
-            blurDataURL="/assets/images/blurImage"
+            blurDataURL="/assets/images/blurImage.jpg"
             src="/assets/images/logo.svg"
             alt="Logo"
             className="w-32"
@@ -60,7 +60,7 @@ export default async function Header() {
               <div className="text-2xl">
                 {session.user.image ? (
                   <Image
-                    blurDataURL="/assets/images/blurImage"
+                    blurDataURL="/assets/images/blurImage.jpg"
                     src={session.user.image}
                     alt="Account"
                     width={40}

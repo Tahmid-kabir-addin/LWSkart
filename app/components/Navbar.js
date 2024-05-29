@@ -15,7 +15,7 @@ export default async function Navbar() {
         <div className="px-8 py-4 bg-primary md:flex items-center cursor-pointer relative group hidden">
           <span className="text-white">
             <Image
-              blurDataURL="/assets/images/blurImage"
+              blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/icons/bars.svg"
               width={24}
               height={24}
@@ -36,7 +36,7 @@ export default async function Navbar() {
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
-                blurDataURL="/assets/images/blurImage"
+                blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/sofa.svg"
                 alt="sofa"
                 className="w-5 h-5 object-contain"
@@ -50,7 +50,7 @@ export default async function Navbar() {
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
-                blurDataURL="/assets/images/blurImage"
+                blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/terrace.svg"
                 alt="terrace"
                 className="w-5 h-5 object-contain"
@@ -64,7 +64,7 @@ export default async function Navbar() {
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
-                blurDataURL="/assets/images/blurImage"
+                blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/bed.svg"
                 alt="bed"
                 className="w-5 h-5 object-contain"
@@ -78,7 +78,7 @@ export default async function Navbar() {
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
-                blurDataURL="/assets/images/blurImage"
+                blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/outdoor-cafe.svg"
                 alt="outdoor"
                 className="w-5 h-5 object-contain"
@@ -92,7 +92,7 @@ export default async function Navbar() {
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
-                blurDataURL="/assets/images/blurImage"
+                blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/bed-2.svg"
                 alt="Mattress"
                 className="w-5 h-5 object-contain"

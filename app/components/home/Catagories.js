@@ -10,7 +10,7 @@ export default function Catagories() {
       <div className="grid grid-cols-3 gap-3">
         <div className="relative rounded-sm overflow-hidden group">
           <Image
-            blurDataURL="/assets/images/blurImage"
+            blurDataURL="/assets/images/blurImage.jpg"
             src="/assets/images/category/category-1.jpg"
             alt="category 1"
             className="w-full"
@@ -28,7 +28,7 @@ export default function Catagories() {
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
-            blurDataURL="/assets/images/blurImage"
+            blurDataURL="/assets/images/blurImage.jpg"
             src="/assets/images/category/category-2.jpg"
             alt="category 1"
             className="w-full"
@@ -43,7 +43,7 @@ export default function Catagories() {
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
-            blurDataURL="/assets/images/blurImage"
+            blurDataURL="/assets/images/blurImage.jpg"
             src="/assets/images/category/category-3.jpg"
             alt="category 1"
             className="w-full"
@@ -60,7 +60,7 @@ export default function Catagories() {
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
-            blurDataURL="/assets/images/blurImage"
+            blurDataURL="/assets/images/blurImage.jpg"
             src="/assets/images/category/category-4.jpg"
             alt="category 1"
             className="w-full"
@@ -77,7 +77,7 @@ export default function Catagories() {
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
-            blurDataURL="/assets/images/blurImage"
+            blurDataURL="/assets/images/blurImage.jpg"
             src="/assets/images/category/category-5.jpg"
             alt="category 1"
             className="w-full"
@@ -94,7 +94,7 @@ export default function Catagories() {
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
-            blurDataURL="/assets/images/blurImage"
+            blurDataURL="/assets/images/blurImage.jpg"
             src="/assets/images/category/category-6.jpg"
             alt="category 1"
             className="w-full"
