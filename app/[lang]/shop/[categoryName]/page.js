@@ -2,16 +2,16 @@ import { getProductByCategoryName } from "@/app/actions/ProductActions";
 import Products from "@/app/components/shop/Products";
 import Link from "next/link";
 
-export async function generateStaticParams() {
-  return [
-    "Bedroom Accessories",
-    "Mattress",
-    "Outdoor",
-    "Living Room",
-    "Sofa",
-    "Kitchen Accessories",
-  ];
-}
+// export async function generateStaticParams() {
+//   return [
+//     "Bedroom Accessories",
+//     "Mattress",
+//     "Outdoor",
+//     "Living Room",
+//     "Sofa",
+//     "Kitchen Accessories",
+//   ];
+// }
 
 export default async function page({ params: { categoryName } }) {
   categoryName = decodeURIComponent(categoryName);
