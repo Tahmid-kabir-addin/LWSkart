@@ -1,3 +1,4 @@
+import StoreProvider from "@/app/redux/StoreProvider";
 import { Poppins } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,13 +20,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html>
-      <body className={poppins.className}>
-        <Header />
-        <Navbar />
-        {children}
+    <html className={poppins.className}>
+      <body>
+        <StoreProvider>
+          <Header />
+          <Navbar />
+          {children}
+        </StoreProvider>
         <Footer />
         <ToastContainer />
+        {/* <CartSideBar /> */}
       </body>
     </html>
   );

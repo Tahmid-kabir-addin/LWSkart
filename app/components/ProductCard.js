@@ -1,15 +1,28 @@
-import { Magnify } from "@/public/assets/images/icons/Magnify";
 import { Star } from "@/public/assets/images/icons/Star";
 import { Heart } from "@/public/assets/images/icons/heart";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import { faFire } from "@fortawesome/free-solid-svg-icons"; // Import the trending icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import AddToCartButton from "./AddToCartButton";
 
 export default function ProductCard({ product }) {
   return (
     <div className="bg-white shadow rounded overflow-hidden group flex flex-col justify-between">
       <div className="relative w-full hover:scale-110">
+        {/* Trending Icon */}
+        {product?.trending && (
+          <div className="absolute top-2 right-2 text-primary">
+            <FontAwesomeIcon icon={faFire} size="lg" />
+            <span className="text-white bg-primary px-2 py-1 rounded text-sm ml-1">
+              Trending
+            </span>
+          </div>
+        )}
+
         <Image
+          blurDataURL="/assets/images/blurImage"
           src={product?.image}
           alt={product?.name}
           className="w-full"
@@ -22,15 +35,6 @@ export default function ProductCard({ product }) {
           className="absolute inset-0 bg-black bg-opacity-40 flex items-center 
                     justify-center gap-2 opacity-0 group-hover:opacity-100 transition"
         >
-          <Link
-            href={`/product/${product?.id}`}
-            className="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
-            title="view product"
-          >
-            <span>
-              <Magnify />
-            </span>
-          </Link>
           <Link
             href="#"
             className="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
@@ -70,12 +74,7 @@ export default function ProductCard({ product }) {
           </div>
         </div>
       </div>
-      <Link
-        href="#"
-        className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-      >
-        Add to cart
-      </Link>
+      <AddToCartButton product={product} />
     </div>
   );
 }

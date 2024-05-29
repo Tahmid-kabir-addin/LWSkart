@@ -1,7 +1,11 @@
 import { getShippingAddressById } from "@/app/actions/UserActions";
 import ShippingUpdateForm from "@/app/components/account/ShippingUpdateForm";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function page({ params }) {
+  const session = await auth();
+  if (!session) redirect("/login");
   const shipping = await getShippingAddressById(params.shippingId);
   return (
     <div className="contain py-16 ">

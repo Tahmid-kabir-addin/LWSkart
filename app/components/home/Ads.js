@@ -4,8 +4,9 @@ import Link from "next/link";
 export default function Ads() {
   return (
     <div className="container pb-16">
-      <Link href="#">
+      <Link href="/shop">
         <Image
+          blurDataURL="/assets/images/blurImage"
           src="/assets/images/offer.jpg"
           alt="ads"
           className="w-full"

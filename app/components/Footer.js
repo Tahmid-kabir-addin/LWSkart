@@ -8,6 +8,7 @@ export default function Footer() {
         <div className="container grid grid-cols-3">
           <div className="col-span-1 space-y-8 mr-2">
             <Image
+              blurDataURL="/assets/images/blurImage"
               src="/assets/images/logo.svg"
               alt="logo"
               className="w-30"
@@ -175,7 +176,15 @@ export default function Footer() {
         <div className="container flex items-center justify-between">
           <p className="text-white">&copy; TailCommerce - All Right Reserved</p>
           <div>
-            <Image src="/assets/images/methods.png" alt="methods" className="h-5" width={250} height={300} unoptimized/>
+            <Image
+              blurDataURL="/assets/images/blurImage"
+              src="/assets/images/methods.png"
+              alt="methods"
+              className="h-5"
+              width={250}
+              height={300}
+              unoptimized
+            />
           </div>
         </div>
       </div>

@@ -1,8 +1,12 @@
 import { getUserById } from "@/app/actions/UserActions";
 import Modal from "@/app/components/Modal";
 import ProfileUpdateForm from "@/app/components/account/ProfileUpdateForm";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function page({ params }) {
+  const session = await auth();
+  if (!session) redirect("/login");
   const user = await getUserById(params.profileId);
   return (
     <Modal>

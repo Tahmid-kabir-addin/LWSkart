@@ -5,6 +5,10 @@ import Catagories from "../components/home/Catagories";
 import Features from "../components/home/Features";
 import Trending from "../components/home/Trending";
 
+export async function generateStaticParams() {
+  return ["bn", "en"];
+}
+
 export default function page() {
   return (
     <>

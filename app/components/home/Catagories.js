@@ -10,18 +10,17 @@ export default function Catagories() {
       <div className="grid grid-cols-3 gap-3">
         <div className="relative rounded-sm overflow-hidden group">
           <Image
+            blurDataURL="/assets/images/blurImage"
             src="/assets/images/category/category-1.jpg"
             alt="category 1"
             className="w-full"
             placeholder="blur"
-            blurDataURL="data:image/png;base64,
-            iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
             width={64}
             height={64}
             unoptimized
           />
           <Link
-            href="#"
+            href="/shop/Bedroom Accessories"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             Bedroom
@@ -29,20 +28,22 @@ export default function Catagories() {
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
+            blurDataURL="/assets/images/blurImage"
             src="/assets/images/category/category-2.jpg"
             alt="category 1"
             className="w-full"
             fill
           />
           <Link
-            href="#"
+            href="/shop/Mattress"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
-            Mattrass
+            Mattress
           </Link>
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
+            blurDataURL="/assets/images/blurImage"
             src="/assets/images/category/category-3.jpg"
             alt="category 1"
             className="w-full"
@@ -51,7 +52,7 @@ export default function Catagories() {
             unoptimized
           />
           <Link
-            href="#"
+            href="/shop/Outdoor"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             Outdoor
@@ -59,6 +60,7 @@ export default function Catagories() {
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
+            blurDataURL="/assets/images/blurImage"
             src="/assets/images/category/category-4.jpg"
             alt="category 1"
             className="w-full"
@@ -67,7 +69,7 @@ export default function Catagories() {
             unoptimized
           />
           <Link
-            href="#"
+            href="/shop/Sofa"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             Sofa
@@ -75,6 +77,7 @@ export default function Catagories() {
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
+            blurDataURL="/assets/images/blurImage"
             src="/assets/images/category/category-5.jpg"
             alt="category 1"
             className="w-full"
@@ -83,7 +86,7 @@ export default function Catagories() {
             unoptimized
           />
           <Link
-            href="#"
+            href="/shop/Living Room Accessories"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             Living Room
@@ -91,6 +94,7 @@ export default function Catagories() {
         </div>
         <div className="relative rounded-sm overflow-hidden group">
           <Image
+            blurDataURL="/assets/images/blurImage"
             src="/assets/images/category/category-6.jpg"
             alt="category 1"
             className="w-full"
@@ -99,7 +103,7 @@ export default function Catagories() {
             unoptimized
           />
           <Link
-            href="#"
+            href="/shop/Kitchen Accessories"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             Kitchen

@@ -1,9 +1,9 @@
 import { auth } from "@/auth";
 import { AccountIcon } from "@/public/assets/images/icons/Account";
-import { CartIconOutline } from "@/public/assets/images/icons/CartOutline";
 import { Heart } from "@/public/assets/images/icons/heart";
 import Image from "next/image";
 import Link from "next/link";
+import Cart from "./Cart";
 
 export default async function Header() {
   const session = await auth();
@@ -13,6 +13,7 @@ export default async function Header() {
       <div className="container flex items-center justify-between">
         <Link href="/">
           <Image
+            blurDataURL="/assets/images/blurImage"
             src="/assets/images/logo.svg"
             alt="Logo"
             className="w-32"
@@ -50,19 +51,7 @@ export default async function Header() {
               8
             </div>
           </Link>
-          <Link
-            href="/checkout"
-            className="flex flex-col gap-1 items-center text-center text-gray-700 hover:text-primary transition relative"
-          >
-            <div className="text-2xl">
-              <CartIconOutline />
-            </div>
-            <div className="text-xs leading-3">Cart</div>
-            <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
-              2
-            </div>
-          </Link>
-
+          <Cart />
           {session?.user ? (
             <Link
               href="/account"
@@ -71,6 +60,7 @@ export default async function Header() {
               <div className="text-2xl">
                 {session.user.image ? (
                   <Image
+                    blurDataURL="/assets/images/blurImage"
                     src={session.user.image}
                     alt="Account"
                     width={40}

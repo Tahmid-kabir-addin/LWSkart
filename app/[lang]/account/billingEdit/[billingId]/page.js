@@ -1,7 +1,11 @@
 import { getBillingAddressById } from "@/app/actions/UserActions";
 import BillingUpdateForm from "@/app/components/account/BillingUpdateForm";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function page({ params }) {
+  const session = await auth();
+  if (!session) redirect("/login");
   const billing = await getBillingAddressById(params.billingId);
   return (
     <div className="contain py-16 ">

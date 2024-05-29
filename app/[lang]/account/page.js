@@ -6,9 +6,11 @@ import { auth } from "@/auth";
 import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function page() {
   const session = await auth();
+  if (!session) redirect("/login");
   const user = await getUser(session?.user?.email);
   return (
     <>
