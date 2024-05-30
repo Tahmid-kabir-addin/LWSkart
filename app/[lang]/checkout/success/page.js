@@ -14,7 +14,7 @@ export default async function OrderSuccess() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
       <div className="bg-[#e1f4e5] p-8 rounded-lg shadow-md text-center">
         <Image
-          src="/assets/images/success.png" // replace with the actual path to your success image
+          src="/assets/images/success.gif" // replace with the actual path to your success image
           alt="Success"
           width={150}
           height={150}
