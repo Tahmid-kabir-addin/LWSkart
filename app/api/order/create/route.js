@@ -9,6 +9,7 @@ export async function POST(req) {
   const data = await req.json();
   const html = await compile(<OrderPdf data={data} />);
   const onedoc = new Onedoc(process.env.ONEDOC_API_KEY);
+  // console.log("🚀 ~ POST ~ html:", html)
   let doc = {
     html,
     title: "Order#12345 Invoice",

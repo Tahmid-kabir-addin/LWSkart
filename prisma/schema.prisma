@@ -84,7 +84,7 @@ model OrderedProducts {
 
 model Order {
   id              String            @id @default(auto()) @map("_id") @db.ObjectId
-  userId          String            @map("userId") @db.ObjectId
+  userId          String            @db.ObjectId
   name            String
   company         String?
   region          String
