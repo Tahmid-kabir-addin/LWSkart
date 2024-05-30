@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-cente">
       <Image
-        src="/assets/images/404_animation.gif"
+        src="/assets/images/404_Not-found.png"
         height={700}
         width={700}
         alt="404 Not Found"
