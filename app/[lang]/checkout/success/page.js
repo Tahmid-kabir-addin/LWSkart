@@ -20,6 +20,7 @@ export default async function OrderSuccess() {
           width={150}
           height={150}
           className="mx-auto"
+          unoptimized
         />
         <h1 className="text-3xl font-bold mt-4">Order Success!</h1>
         <p className="text-gray-600 mt-2">

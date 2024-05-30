@@ -9,6 +9,7 @@ export default function NotFound() {
         height={700}
         width={700}
         alt="404 Not Found"
+        unoptimized
       />
       <div className="max-w-md p-8 bg-white rounded-lg">
         <h1 className="text-4xl text-red-500 font-bold mb-4">Oops!</h1>
