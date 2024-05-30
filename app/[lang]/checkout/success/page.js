@@ -1,8 +1,8 @@
 import { getRecentOrder } from "@/app/actions/OrderAction";
 import { auth } from "@/auth";
+import successGif from "@/public/assets/images/success.gif";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-
 export default async function OrderSuccess() {
   const session = await auth();
   if (!session) {
@@ -15,7 +15,7 @@ export default async function OrderSuccess() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-400">
       <div className="bg-[#e1f4e5] p-8 rounded-lg shadow-md text-center">
         <Image
-          src="/assets/images/success.gif" // replace with the actual path to your success image
+          src={successGif} // replace with the actual path to your success image
           alt="Success"
           width={150}
           height={150}
