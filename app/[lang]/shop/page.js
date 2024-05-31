@@ -166,7 +166,6 @@ export default function Page() {
             aria-controls="drawer-example"
           >
             <Image
-              placeholder="blur"
               blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/icons/bars.svg"
               width={24}

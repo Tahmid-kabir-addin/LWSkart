@@ -8,7 +8,6 @@ export default function Footer() {
         <div className="container grid grid-cols-3">
           <div className="col-span-1 space-y-8 mr-2">
             <Image
-              placeholder="blur"
               blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/logo.svg"
               alt="logo"

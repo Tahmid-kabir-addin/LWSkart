@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FormError from "../auth/FormError";
-import Loader from "../loading";
 import CheckoutForm from "./CheckoutForm";
+import OrderConfirmLoader from "./OrderConfirmLoader";
 import OrderConfirmModal from "./OrderConfirmModal";
 
 export default function OrderSummary() {
@@ -38,8 +38,10 @@ export default function OrderSummary() {
         throw new Error(error);
       }
     };
-    if (orderConfirmed && data) placeOrder();
-    setLoadingPage(false);
+    if (orderConfirmed && data) {
+      setLoadingPage(true);
+      placeOrder();
+    }
   }, [orderConfirmed, data, router]);
 
   useEffect(() => {
@@ -52,15 +54,12 @@ export default function OrderSummary() {
     }
   }, [loading, cartItems]);
 
-  if (loadingPage)
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
-
   const handlePlaceOrder = (e) => {
     e.preventDefault();
+    if (!agreed) {
+      setError("Please agree to the terms and conditions");
+      return;
+    }
     let formData = new FormData(e.currentTarget);
     // also add cartItems, totalPrice, subTotalPrice, shippingPrice to formData
     formData.append("cartItems", JSON.stringify(cartItems));
@@ -70,15 +69,10 @@ export default function OrderSummary() {
       totalPrice > 1000 ? totalPrice : totalPrice - 50
     );
     formData.append("shippingPrice", totalPrice > 1000 ? 0 : 50);
-    if (!agreed) {
-      setError("Please agree to the terms and conditions");
-      return;
-    }
     setData(formData);
     setConfirmModal(true);
-    // setLoadingPage(true);
   };
-
+  if (loadingPage) return <OrderConfirmLoader />;
   return (
     <form
       className="container grid grid-cols-12 items-start pb-16 pt-4 gap-6"

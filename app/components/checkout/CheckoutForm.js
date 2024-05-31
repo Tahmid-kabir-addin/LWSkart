@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 
 export default function CheckoutForm() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const init = async () => {
       const res = await getUserInfo();
-      if (res.success) setUser(res.user);
-      else throw new Error(res.error);
+      if (res.success) {
+        setUser(res.user);
+        setLoading(false);
+      } else throw new Error(res.error);
     };
     init();
   }, []);

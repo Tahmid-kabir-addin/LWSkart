@@ -6,7 +6,7 @@ import Features from "../components/home/Features";
 import Trending from "../components/home/Trending";
 
 // export async function generateStaticParams() {
-//   return ["bn", "en"];
+//   return ["en", "bn"];
 // }
 
 export default function page() {

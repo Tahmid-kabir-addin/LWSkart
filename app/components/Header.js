@@ -13,7 +13,6 @@ export default async function Header() {
       <div className="container flex items-center justify-between">
         <Link href="/">
           <Image
-            placeholder="blur"
             blurDataURL="/assets/images/blurImage.jpg"
             src="/assets/images/logo.svg"
             alt="Logo"
