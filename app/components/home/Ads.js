@@ -6,6 +6,7 @@ export default function Ads() {
     <div className="container pb-16">
       <Link href="/shop">
         <Image
+          placeholder="blur"
           blurDataURL="/assets/images/blurImage.jpg"
           src="/assets/images/offer.jpg"
           alt="ads"

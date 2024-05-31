@@ -1,13 +1,11 @@
 "use client";
 
-import { useState } from "react";
-
-export default function QuantityButtons({ stock }) {
-  const [quantity, setQuantity] = useState(1);
-  const handleIncrement = () =>
-    setQuantity((prev) => (prev < stock ? prev + 1 : prev));
-  const handleDecrement = () =>
-    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
+export default function QuantityButtons({
+  stock,
+  handleIncrement,
+  handleDecrement,
+  quantity,
+}) {
   return (
     <div className="mt-4">
       <h3 className="text-sm text-gray-800 uppercase mb-1">Quantity</h3>

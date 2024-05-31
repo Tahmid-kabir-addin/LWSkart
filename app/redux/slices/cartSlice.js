@@ -38,7 +38,11 @@ const cartSlice = createSlice({
       );
       state.shippingPrice = state.itemsPrice > 100 ? 0 : 50;
       state.totalPrice = (state.itemsPrice + state.shippingPrice).toFixed(2);
-      Cookies.set("cart", JSON.stringify(serializeCartState(state)));
+      let cookieTimer = new Date(new Date().getTime() + 60 * 1000);
+      Cookies.set(
+        "cart",
+        JSON.stringify(serializeCartState(state), { expires: cookieTimer })
+      );
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(

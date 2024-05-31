@@ -8,6 +8,7 @@ export default function Footer() {
         <div className="container grid grid-cols-3">
           <div className="col-span-1 space-y-8 mr-2">
             <Image
+              placeholder="blur"
               blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/logo.svg"
               alt="logo"
@@ -177,6 +178,7 @@ export default function Footer() {
           <p className="text-white">&copy; TailCommerce - All Right Reserved</p>
           <div>
             <Image
+              placeholder="blur"
               blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/methods.png"
               alt="methods"

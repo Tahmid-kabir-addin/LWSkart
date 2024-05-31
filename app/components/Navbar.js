@@ -15,6 +15,7 @@ export default async function Navbar() {
         <div className="px-8 py-4 bg-primary md:flex items-center cursor-pointer relative group hidden">
           <span className="text-white">
             <Image
+              placeholder="blur"
               blurDataURL="/assets/images/blurImage.jpg"
               src="/assets/images/icons/bars.svg"
               width={24}
@@ -32,10 +33,11 @@ export default async function Navbar() {
             // style="width: 300px;"
           >
             <Link
-              href="#"
+              href="/shop/Sofa"
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
+                placeholder="blur"
                 blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/sofa.svg"
                 alt="sofa"
@@ -46,10 +48,11 @@ export default async function Navbar() {
               <span className="ml-6 text-gray-600 text-sm">Sofa</span>
             </Link>
             <Link
-              href="#"
+              href="/shop/Living Room Accessories"
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
+                placeholder="blur"
                 blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/terrace.svg"
                 alt="terrace"
@@ -60,10 +63,11 @@ export default async function Navbar() {
               <span className="ml-6 text-gray-600 text-sm">Living Room</span>
             </Link>
             <Link
-              href="#"
+              href="/shop/Bedroom Accessories"
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
+                placeholder="blur"
                 blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/bed.svg"
                 alt="bed"
@@ -74,10 +78,11 @@ export default async function Navbar() {
               <span className="ml-6 text-gray-600 text-sm">Bedroom</span>
             </Link>
             <Link
-              href="#"
+              href="/shop/Outdoor"
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
+                placeholder="blur"
                 blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/outdoor-cafe.svg"
                 alt="outdoor"
@@ -88,10 +93,11 @@ export default async function Navbar() {
               <span className="ml-6 text-gray-600 text-sm">Outdoor</span>
             </Link>
             <Link
-              href="#"
+              href="/shop/Mattress"
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
+                placeholder="blur"
                 blurDataURL="/assets/images/blurImage.jpg"
                 src="/assets/images/icons/bed-2.svg"
                 alt="Mattress"

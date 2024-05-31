@@ -8,8 +8,9 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Page() {
-  const query = useSearchParams();
+export default function SearchResults({ query }) {
+  const q = useSearchParams();
+  console.log("🚀 ~ SearchResults ~ q:", q);
   const router = useRouter();
   const pathname = usePathname();
   // const [category, setCategory] = useState(query.entries.category || "");
@@ -32,9 +33,10 @@ export default function Page() {
     const fetchFilteredProducts = async () => {
       console.log("hello from useeffect");
       const res = await fetch(
-        `/api/products?${new URLSearchParams(query.toString())}`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/search?q=${q}`
       );
       const data = await res.json();
+      console.log("🚀 ~ fetchFilteredProducts ~ data:", data);
       setPageNumber(Math.ceil(data.length / 12));
       // set all the qty by category
       setBedRoomQty(
@@ -56,11 +58,11 @@ export default function Page() {
     };
 
     fetchFilteredProducts();
-  }, [query, currentPage]);
+  }, [q, currentPage]);
 
   const handleFilterChange = (type, value = "") => {
     setLoading(true);
-    const current = new URLSearchParams(query.toString());
+    const current = new URLSearchParams(q.toString());
     current.delete("page");
     setCurrentPage(1);
 
@@ -134,7 +136,7 @@ export default function Page() {
   };
 
   const handlePageChange = (page) => {
-    const current = new URLSearchParams(query.toString());
+    const current = new URLSearchParams(q.toString());
     if (page === 1) {
       current.delete("page");
     } else {

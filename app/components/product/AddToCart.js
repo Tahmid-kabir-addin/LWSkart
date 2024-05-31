@@ -4,13 +4,16 @@ import {
   hideLoading,
   showLoading,
 } from "@/app/redux/slices/cartSlice";
+import { CartIcon } from "@/public/assets/images/icons/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 export default function AddToCartButton({ product }) {
   const dispatch = useDispatch();
   const { loading, cartItems } = useSelector((state) => state.cart);
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
+    console.log("🚀 ~ AddToCartButton ~ cartItems:", cartItems);
+
     if (cartItems.find((item) => item.id === product.id)) {
       toast.error("Item already in cart!", {
         position: "bottom-center",
@@ -41,7 +44,7 @@ export default function AddToCartButton({ product }) {
 
   return (
     <button
-      className={`block w-full py-1 text-center text-white ${
+      className={`text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2  ${
         product?.stock < 1
           ? "bg-red-400 border border-primary cursor-not-allowed"
           : "bg-primary border border-primary"
@@ -49,6 +52,9 @@ export default function AddToCartButton({ product }) {
       onClick={handleAddToCart}
       disabled={product?.stock < 1}
     >
+      <span>
+        <CartIcon />
+      </span>{" "}
       Add to cart
     </button>
   );
