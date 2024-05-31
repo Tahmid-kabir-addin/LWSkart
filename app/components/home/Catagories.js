@@ -15,7 +15,6 @@ export default function Catagories() {
             src="/assets/images/category/category-1.jpg"
             alt="category 1"
             className="w-full"
-            placeholder="blur"
             width={64}
             height={64}
             unoptimized
