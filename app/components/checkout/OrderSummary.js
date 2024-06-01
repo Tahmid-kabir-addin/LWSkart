@@ -1,5 +1,6 @@
 "use client";
 import { createOrder } from "@/app/actions/OrderAction";
+import { dict } from "@/app/dict/dict";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -9,7 +10,7 @@ import CheckoutForm from "./CheckoutForm";
 import OrderConfirmLoader from "./OrderConfirmLoader";
 import OrderConfirmModal from "./OrderConfirmModal";
 
-export default function OrderSummary() {
+export default function OrderSummary({ lang }) {
   // const [state, formAction] = useFormState(createOrder, null);
   const { loading, cartItems } = useSelector((state) => state.cart);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -57,7 +58,7 @@ export default function OrderSummary() {
   const handlePlaceOrder = (e) => {
     e.preventDefault();
     if (!agreed) {
-      setError("Please agree to the terms and conditions");
+      setError(dict(lang, "You must agree to the terms and conditions"));
       return;
     }
     let formData = new FormData(e.currentTarget);
@@ -79,7 +80,7 @@ export default function OrderSummary() {
       onSubmit={handlePlaceOrder}
     >
       <div className="col-span-8 border border-gray-200 p-4 rounded">
-        <CheckoutForm />
+        <CheckoutForm lang={lang} />
       </div>
 
       <div className="col-span-4 border border-gray-200 p-4 rounded">
@@ -90,7 +91,7 @@ export default function OrderSummary() {
           />
         )}
         <h4 className="text-gray-800 text-lg mb-4 font-medium uppercase">
-          order summary
+          {dict(lang, "Order Summary")}
         </h4>
         <div className="space-y-2">
           {!loading &&
@@ -98,7 +99,9 @@ export default function OrderSummary() {
               <div className="flex justify-between" key={item.id}>
                 <div className="w-3/5">
                   <h5 className="text-gray-800 font-medium">{item.name}</h5>
-                  <p className="text-sm text-gray-600">Size: {item.size}</p>
+                  <p className="text-sm text-gray-600">
+                    {dict(lang, "Size")}: {item.size}
+                  </p>
                 </div>
                 <p className="text-gray-600">x{item.quantity}</p>
                 <p className="text-gray-800 font-medium">
@@ -109,17 +112,17 @@ export default function OrderSummary() {
         </div>
 
         <div className="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercas">
-          <p>subtotal</p>
+          <p>{dict(lang, "Subtotal")}</p>
           <p>${totalPrice > 1000 ? totalPrice : totalPrice - 50}</p>
         </div>
 
         <div className="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercas">
-          <p>shipping</p>
-          <p>{totalPrice > 1000 ? "Free" : "$50"}</p>
+          <p>{dict(lang, "Shipping Charge")}</p>
+          <p>{totalPrice > 1000 ? dict(lang, "Free") : "$50"}</p>
         </div>
 
         <div className="flex justify-between text-gray-800 font-medium py-3 uppercas">
-          <p className="font-semibold">Total</p>
+          <p className="font-semibold">{dict(lang, "Total")}</p>
           <p>${totalPrice}</p>
         </div>
 
@@ -135,9 +138,9 @@ export default function OrderSummary() {
             for="aggrement"
             className="text-gray-600 ml-3 cursor-pointer text-sm"
           >
-            I agree to the{" "}
+            {dict(lang, "I agree to the")}{" "}
             <Link href="#" className="text-primary">
-              terms & conditions
+              {dict(lang, "terms and conditions")}
             </Link>
           </label>
         </div>
@@ -146,7 +149,7 @@ export default function OrderSummary() {
           type="submit"
           className="block w-full py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium"
         >
-          Place order
+          {dict(lang, "Place Order")}
         </button>
       </div>
     </form>

@@ -7,8 +7,10 @@ import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { getDictionary } from "../dictionaries/dictionaries";
 
-export default async function page() {
+export default async function page({ params: { lang } }) {
+  const dict = await getDictionary(lang);
   const session = await auth();
   if (!session) redirect("/login");
   const user = await getUser(session?.user?.email);
@@ -21,15 +23,18 @@ export default async function page() {
         <span className="text-sm text-gray-400">
           <ChevronRight />
         </span>
-        <p className="text-gray-600 font-medium">Account</p>
+        <p className="text-gray-600 font-medium">{dict.account}</p>
       </div>
       <div className="container  items-start gap-6 pt-4 pb-16">
         <div className=" grid grid-cols-3 gap-4 mx-auto max-w-5xl">
-          <PersonalProfile user={user} />
+          <PersonalProfile user={user} lang={lang} />
 
-          <ShippingAddress ShippingAddress={user?.ShippingAddress} />
+          <ShippingAddress
+            ShippingAddress={user?.ShippingAddress}
+            lang={lang}
+          />
 
-          <BillingAddress BillingAddress={user?.BillingAddress} />
+          <BillingAddress BillingAddress={user?.BillingAddress} lang={lang} />
         </div>
       </div>
     </>

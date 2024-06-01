@@ -1,8 +1,9 @@
 "use client";
 import { getUserInfo } from "@/app/actions/OrderAction";
+import { dict } from "@/app/dict/dict";
 import { useEffect, useState } from "react";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ lang }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -18,11 +19,13 @@ export default function CheckoutForm() {
   return (
     <>
       <input hidden type="text" name="userId" value={user?.id} />
-      <h3 className="text-lg font-medium capitalize mb-4">Checkout</h3>
+      <h3 className="text-lg font-medium capitalize mb-4">
+        {dict(lang, "Checkout")}
+      </h3>
       <div className="space-y-4">
         <div>
           <label for="first-name" className="text-gray-600">
-            Name <span className="text-primary">*</span>
+            {dict(lang, "Name")} <span className="text-primary">*</span>
           </label>
           <input
             defaultValue={user?.name}
@@ -37,7 +40,7 @@ export default function CheckoutForm() {
         </div>
         <div>
           <label for="company" className="text-gray-600">
-            Company
+            {dict(lang, "Company")}
           </label>
           <input
             type="text"
@@ -48,7 +51,8 @@ export default function CheckoutForm() {
         </div>
         <div>
           <label for="region" className="text-gray-600">
-            Country/Region
+            {dict(lang, "Country ")}
+            <span className="text-primary">*</span>
           </label>
           <input
             defaultValue={user?.ShippingAddress?.country}
@@ -63,7 +67,7 @@ export default function CheckoutForm() {
         </div>
         <div>
           <label for="address" className="text-gray-600">
-            Street address
+            {dict(lang, "Street")} <span className="text-primary">*</span>
           </label>
           <input
             type="text"
@@ -78,7 +82,7 @@ export default function CheckoutForm() {
         </div>
         <div>
           <label for="city" className="text-gray-600">
-            City
+            {dict(lang, "City")} <span className="text-primary">*</span>
           </label>
           <input
             type="text"
@@ -93,7 +97,7 @@ export default function CheckoutForm() {
         </div>
         <div>
           <label for="phone" className="text-gray-600">
-            Phone number
+            {dict(lang, "Phone Number")} <span className="text-primary">*</span>
           </label>
           <input
             type="text"
@@ -110,7 +114,7 @@ export default function CheckoutForm() {
         </div>
         <div>
           <label for="email" className="text-gray-600">
-            Email address
+            {dict(lang, "Email")} <span className="text-primary">*</span>
           </label>
           <input
             type="email"

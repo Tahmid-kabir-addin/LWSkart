@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import FormError from "../auth/FormError";
 import SubmitButton from "../auth/SubmitButton";
 
-export default function BillingUpdateForm({ billing }) {
+export default function BillingUpdateForm({ billing, lang }) {
   const [state, formAction] = useFormState(billingUpdate, null);
   const router = useRouter();
   if (state?.success) {
@@ -28,7 +28,7 @@ export default function BillingUpdateForm({ billing }) {
       <div className="space-y-2">
         <div>
           <label htmlFor="name" className="text-gray-600 mb-2 block">
-            Full Name
+            {lang === "en" ? "Full Name" : "নাম"}
           </label>
           <input
             type="text"
@@ -41,7 +41,7 @@ export default function BillingUpdateForm({ billing }) {
         </div>
         <div>
           <label htmlFor="email" className="text-gray-600 mb-2 block">
-            Email
+            {lang === "en" ? "Email Address" : "ইমেইল ঠিকানা"}
           </label>
           <input
             type="email"
@@ -57,7 +57,7 @@ export default function BillingUpdateForm({ billing }) {
         </div>
         <div>
           <label htmlFor="phone" className="text-gray-600 mb-2 block">
-            Phone Number
+            {lang === "en" ? "Phone Number" : "ফোন নম্বর"}
           </label>
           <input
             type="tel"
@@ -74,7 +74,7 @@ export default function BillingUpdateForm({ billing }) {
         </div>
         <div>
           <label htmlFor="country" className="text-gray-600 mb-2 block">
-            Country
+            {lang === "en" ? "Country" : "দেশ"}
           </label>
           <input
             type="text"
@@ -87,7 +87,7 @@ export default function BillingUpdateForm({ billing }) {
         </div>
         <div>
           <label htmlFor="street" className="text-gray-600 mb-2 block">
-            Street
+            {lang === "en" ? "Street" : "রাস্তা"}
           </label>
           <input
             type="text"
@@ -100,7 +100,7 @@ export default function BillingUpdateForm({ billing }) {
         </div>
         <div>
           <label htmlFor="city" className="text-gray-600 mb-2 block">
-            City
+            {lang === "en" ? "City" : "শহর"}
           </label>
           <input
             type="text"
@@ -113,7 +113,7 @@ export default function BillingUpdateForm({ billing }) {
         </div>
         <div>
           <label htmlFor="zip" className="text-gray-600 mb-2 block">
-            Zip Code
+            {lang === "en" ? "Zip Code" : "জিপ কোড"}
           </label>
           <input
             type="text"
@@ -127,7 +127,7 @@ export default function BillingUpdateForm({ billing }) {
       </div>
       {state?.error && <FormError error={state.error} />}
       <div className="mt-4">
-        <SubmitButton buttonText="Update" />
+        <SubmitButton buttonText={lang === "en" ? "Update" : "আপডেট"} />
       </div>
     </form>
   );

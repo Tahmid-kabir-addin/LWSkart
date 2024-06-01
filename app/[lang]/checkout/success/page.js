@@ -1,8 +1,9 @@
 import { getRecentOrder } from "@/app/actions/OrderAction";
+import { dict } from "@/app/dict/dict";
 import { auth } from "@/auth";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-export default async function OrderSuccess() {
+export default async function OrderSuccess({ params: { lang } }) {
   const session = await auth();
   if (!session) {
     redirect("/login");
@@ -21,12 +22,20 @@ export default async function OrderSuccess() {
           className="mx-auto"
           unoptimized
         />
-        <h1 className="text-3xl font-bold mt-4">Order Success!</h1>
+        <h1 className="text-3xl font-bold mt-4">
+          {dict(lang, "Order Success!")}
+        </h1>
         <p className="text-gray-600 mt-2">
-          Thank you for your purchase! Your order has been successfully placed.
+          {dict(
+            lang,
+            "Thank you for your purchase! Your order has been successfully placed."
+          )}
         </p>
         <p className="text-gray-600 mt-2">
-          You can download your invoice by clicking the button below.
+          {dict(
+            lang,
+            "You can download your invoice by clicking the button below."
+          )}
         </p>
         <a
           href={order.pdfLink}
@@ -34,7 +43,7 @@ export default async function OrderSuccess() {
           download
           rel="noopener noreferrer"
         >
-          Download Invoice
+          {dict(lang, "Download Invoice")}
         </a>
       </div>
     </div>

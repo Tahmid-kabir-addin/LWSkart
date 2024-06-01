@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 
-export default function Searchbar({ q = "" }) {
+export default function Searchbar({ q = "", lang }) {
+  console.log("🚀 ~ Searchbar ~ lang:", lang);
   const [query, setQuery] = useState(q);
   const debouncedSearch = useDebounce(query);
   const router = useRouter();
@@ -25,12 +26,14 @@ export default function Searchbar({ q = "" }) {
         name="search"
         id="search"
         className="w-full border border-primary border-r-0 pl-12 py-3 pr-3 rounded-l-md focus:outline-none hidden md:flex"
-        placeholder="What are you looking for?"
+        placeholder={
+          lang === "en" ? "What are you looking for?" : "আপনি কী খুঁজছেন?"
+        }
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       <button className="bg-primary border border-primary text-white px-8 py-3 rounded-r-md hover:bg-transparent hover:text-primary transition hidden md:flex">
-        Search
+        {lang === "en" ? "Search" : "অনুসন্ধান"}
       </button>
     </div>
   );

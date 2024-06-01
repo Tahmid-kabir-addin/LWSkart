@@ -3,9 +3,10 @@ import { Heart } from "@/public/assets/images/icons/heart";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
-export default function Wishlist() {
+export default function Wishlist({ lang }) {
   const { loading, wishlistItems } = useSelector((state) => state.wishlist);
 
+  console.log("🚀 ~ Wishlist ~ lang:", lang);
   return (
     <Link
       href="/wishlist"
@@ -14,7 +15,9 @@ export default function Wishlist() {
       <div className="text-2xl">
         <Heart />
       </div>
-      <div className="text-xs leading-3">Wishlist</div>
+      <div className="text-xs leading-3">
+        {lang === "bn" ? "পছন্দ" : "Wishlist"}
+      </div>
       {!loading && wishlistItems?.length > 0 && (
         <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
           {wishlistItems.length}

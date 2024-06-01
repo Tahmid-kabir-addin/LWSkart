@@ -7,7 +7,7 @@ import Link from "next/link";
 import AddToCartButton from "./AddToCartButton";
 import AddToWishlist from "./AddToWishlist";
 
-export default function ProductCard({ product }) {
+export default async function ProductCard({ product, lang }) {
   return (
     <div className="bg-white shadow rounded overflow-hidden group flex flex-col justify-between">
       <div className="relative w-full hover:scale-110">
@@ -16,7 +16,7 @@ export default function ProductCard({ product }) {
           <div className="absolute top-2 right-2 text-primary">
             <FontAwesomeIcon icon={faFire} size="lg" />
             <span className="text-white bg-primary px-2 py-1 rounded text-sm ml-1">
-              Trending
+              {lang === "en" ? "Trending" : "ট্রেন্ডিং"}
             </span>
           </div>
         )}

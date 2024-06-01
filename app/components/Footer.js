@@ -1,7 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  FacebookIcon,
+  LinkedinIcon,
+  RedditIcon,
+  TwitterIcon,
+} from "react-share";
+import { getDictionary } from "../[lang]/dictionaries/dictionaries";
 
-export default function Footer() {
+export default async function Footer({ lang }) {
+  const dict = await getDictionary(lang);
   return (
     <>
       <footer className="bg-white pt-16 pb-12 border-t border-gray-100">
@@ -17,23 +25,20 @@ export default function Footer() {
               unoptimized
             />
             <div className="mr-2">
-              <p className="text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                hic?
-              </p>
+              <p className="text-gray-500">{dict.description}</p>
             </div>
             <div className="flex space-x-6">
               <Link href="#" className="text-gray-400 hover:text-gray-500">
-                <i className="fa-brands fa-facebook-square"></i>
+                <FacebookIcon size={32} className="rounded-full" />
               </Link>
               <Link href="#" className="text-gray-400 hover:text-gray-500">
-                <i className="fa-brands fa-instagram-square"></i>
+                <LinkedinIcon size={32} className="rounded-full" />
               </Link>
               <Link href="#" className="text-gray-400 hover:text-gray-500">
-                <i className="fa-brands fa-twitter-square"></i>
+                <TwitterIcon size={32} className="rounded-full" />
               </Link>
               <Link href="#" className="text-gray-400 hover:text-gray-500">
-                <i className="fa-brands fa-github-square"></i>
+                <RedditIcon size={32} className="rounded-full" />
               </Link>
             </div>
           </div>
@@ -42,64 +47,64 @@ export default function Footer() {
             <div className="grid grid-cols-2 gap-8">
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
-                  Solutions
+                  {dict.solutions}
                 </h3>
                 <div className="mt-4 space-y-4">
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Marketing
+                    {dict.marketing}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Analitycs
+                    {dict.analitycs}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Commerce
+                    {dict.commerce}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Insights
+                    {dict.insights}
                   </Link>
                 </div>
               </div>
 
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
-                  Support
+                  {dict.support}
                 </h3>
                 <div className="mt-4 space-y-4">
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Pricing
+                    {dict.pricing}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Documentation
+                    {dict.documentation}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Guides
+                    {dict.guides}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    API Status
+                    {dict.apiStatus}
                   </Link>
                 </div>
               </div>
@@ -107,64 +112,64 @@ export default function Footer() {
             <div className="grid grid-cols-2 gap-8">
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
-                  Solutions
+                  {dict.solutions}
                 </h3>
                 <div className="mt-4 space-y-4">
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Marketing
+                    {dict.marketing}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Analitycs
+                    {dict.analitycs}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Commerce
+                    {dict.commerce}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Insights
+                    {dict.insights}
                   </Link>
                 </div>
               </div>
 
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
-                  Support
+                  {dict.support}
                 </h3>
                 <div className="mt-4 space-y-4">
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Pricing
+                    {dict.pricing}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Documentation
+                    {dict.documentation}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    Guides
+                    {dict.guides}
                   </Link>
                   <Link
                     href="#"
                     className="text-base text-gray-500 hover:text-gray-900 block"
                   >
-                    API Status
+                    {dict.apiStatus}
                   </Link>
                 </div>
               </div>
@@ -174,7 +179,7 @@ export default function Footer() {
       </footer>
       <div className="bg-gray-800 py-4">
         <div className="container flex items-center justify-between">
-          <p className="text-white">&copy; TailCommerce - All Right Reserved</p>
+          <p className="text-white">&copy; {dict.rights}</p>
           <div>
             <Image
               placeholder="blur"

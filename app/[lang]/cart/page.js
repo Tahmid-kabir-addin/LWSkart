@@ -3,8 +3,11 @@ import { auth } from "@/auth";
 import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
 import { redirect } from "next/navigation";
+import { getDictionary } from "../dictionaries/dictionaries";
 
-export default async function page() {
+export default async function page({ params: { lang } }) {
+  const dict = await getDictionary(lang);
+  console.log(dict.ci);
   const session = await auth();
   if (!session) redirect("/login");
   return (
@@ -19,8 +22,8 @@ export default async function page() {
         <p className="text-gray-600 font-medium">Cart</p>
       </div>
       <div className="flex flex-col w-screen justify-center items-center">
-        <h1 className="text-3xl">Cart Items</h1>
-        <CartItems />
+        <h1 className="text-3xl">{dict.ci}</h1>
+        <CartItems lang={lang} />
       </div>
     </>
   );

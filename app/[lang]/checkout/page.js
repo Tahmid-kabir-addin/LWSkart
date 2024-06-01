@@ -1,12 +1,13 @@
-import CheckoutForm from "@/app/components/checkout/CheckoutForm";
 import OrderSummary from "@/app/components/checkout/OrderSummary";
 import { auth } from "@/auth";
 import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { getDictionary } from "../dictionaries/dictionaries";
 
-export default async function page() {
+export default async function page({ params: { lang } }) {
+  const dict = await getDictionary(lang);
   const session = await auth();
   if (!session) {
     redirect("/login");
@@ -20,11 +21,10 @@ export default async function page() {
         <span className="text-sm text-gray-400">
           <ChevronRight />
         </span>
-        <p className="text-gray-600 font-medium">Checkout</p>
+        <p className="text-gray-600 font-medium">{dict.checkout}</p>
       </div>
 
-        <OrderSummary />
-
+      <OrderSummary lang={lang} />
     </>
   );
 }

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import FormError from "../auth/FormError";
 import SubmitButton from "../auth/SubmitButton";
 
-export default function ProfileUpdateForm({ user }) {
+export default function ProfileUpdateForm({ user, lang }) {
   const [state, formAction] = useFormState(profileUpdate, null);
   console.log("🚀 ~ ProfileUpdateForm ~ state:", state);
   const router = useRouter();
@@ -31,7 +31,7 @@ export default function ProfileUpdateForm({ user }) {
       <div className="space-y-2">
         <div>
           <label htmlFor="name" className="text-gray-600 mb-2 block">
-            Full Name
+            {lang === "en" ? "Full Name" : "নাম"}
           </label>
           <input
             type="text"
@@ -44,7 +44,7 @@ export default function ProfileUpdateForm({ user }) {
         </div>
         <div>
           <label htmlFor="email" className="text-gray-600 mb-2 block">
-            Email
+            {lang === "en" ? "Email Address" : "ইমেইল"}
           </label>
           <input
             type="email"
@@ -60,7 +60,7 @@ export default function ProfileUpdateForm({ user }) {
         </div>
         <div>
           <label htmlFor="phone" className="text-gray-600 mb-2 block">
-            Phone Number
+            {lang === "en" ? "Phone Number" : "ফোন নম্বর"}
           </label>
           <input
             type="tel"
@@ -78,7 +78,7 @@ export default function ProfileUpdateForm({ user }) {
       </div>
       {state?.error && <FormError error={state.error} />}
       <div className="mt-4">
-        <SubmitButton buttonText="Update" />
+        <SubmitButton buttonText={lang === "en" ? "Update" : "আপডেট"} />
       </div>
     </form>
   );

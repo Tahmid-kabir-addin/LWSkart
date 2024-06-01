@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartQuantittyButtons from "./CartQuantittyButtons";
 
-export default function CartItems() {
+export default function CartItems({ lang }) {
   const { loading, cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -31,9 +31,11 @@ export default function CartItems() {
   if (cartItems.length === 0)
     return (
       <div className="text-xl font-medium pt-5">
-        No items in cart. Explore items{" "}
+        {lang === "en"
+          ? "No items in cart. Explore items"
+          : "কার্টে কোনো পণ্য নেই। পণ্য খুঁজুন"}{" "}
         <Link href="/shop" className="text-blue-700">
-          Here
+          {lang === "en" ? "Here" : "এখানে"}
         </Link>
       </div>
     );
@@ -75,11 +77,17 @@ export default function CartItems() {
                 {item.name}
               </h2>
               <p className="text-gray-500 text-sm">
-                Availability:{" "}
+                {lang === "en" ? "Availability" : "উপযোগিতা"}:{" "}
                 <span
                   className={item.stock > 0 ? "text-green-600" : "text-red-600"}
                 >
-                  {item.stock > 0 ? "In Stock" : "Out of Stock"}
+                  {item.stock > 0
+                    ? lang === "en"
+                      ? "In Stock"
+                      : "সটকে আছে"
+                    : lang === "en"
+                    ? "Out of Stock"
+                    : "স্টকে নেই"}
                 </span>
               </p>
             </div>
@@ -98,20 +106,27 @@ export default function CartItems() {
               <div className="">
                 <TrashIcon />
               </div>
-              {!loading ? "Remove" : "Removing..."}
+              {!loading
+                ? lang === "en"
+                  ? "Remove"
+                  : "মুছে ফেলুন"
+                : lang === "en"
+                ? "Removing..."
+                : "মুছে ফেলা হচ্ছে..."}
             </button>
           </div>
         ))}
       </div>
       <div className="mt-8 flex items-center gap-3 flex-col">
         <div className="text-xl font-semibold">
-          Total Price: ${totalPrice.toFixed(2)}
+          {lang === "en" ? "Total Price" : "মোট মূল্য"}: $
+          {totalPrice.toFixed(2)}
         </div>
         <Link
           href="/checkout"
           className="px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-bold"
         >
-          Proceed to Checkout
+          {lang === "en" ? "Proceed to Checkout" : "চেকআউট করুন"}
         </Link>
       </div>
     </div>

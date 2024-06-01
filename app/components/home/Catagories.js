@@ -1,11 +1,13 @@
+import { getDictionary } from "@/app/[lang]/dictionaries/dictionaries";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Catagories() {
+export default async function Catagories({ lang }) {
+  const dict = await getDictionary(lang);
   return (
     <div className="container py-16">
       <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
-        shop by category
+        {dict.shopByCategory}
       </h2>
       <div className="grid grid-cols-3 gap-3">
         <div className="relative rounded-sm overflow-hidden group">
@@ -23,7 +25,7 @@ export default function Catagories() {
             href="/shop/Bedroom Accessories"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
-            Bedroom
+            {dict.bedroom}
           </Link>
         </div>
         <div className="relative rounded-sm overflow-hidden group">
@@ -39,7 +41,7 @@ export default function Catagories() {
             href="/shop/Mattress"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
-            Mattress
+            {dict.mattress}
           </Link>
         </div>
         <div className="relative rounded-sm overflow-hidden group">
@@ -57,7 +59,7 @@ export default function Catagories() {
             href="/shop/Outdoor"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
-            Outdoor
+            {dict.outdoor}
           </Link>
         </div>
         <div className="relative rounded-sm overflow-hidden group">
@@ -75,7 +77,7 @@ export default function Catagories() {
             href="/shop/Sofa"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
-            Sofa
+            {dict.sofa}
           </Link>
         </div>
         <div className="relative rounded-sm overflow-hidden group">
@@ -93,7 +95,7 @@ export default function Catagories() {
             href="/shop/Living Room Accessories"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
-            Living Room
+            {dict.livingroom}
           </Link>
         </div>
         <div className="relative rounded-sm overflow-hidden group">
@@ -111,7 +113,7 @@ export default function Catagories() {
             href="/shop/Kitchen Accessories"
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
-            Kitchen
+            {dict.kitchen}
           </Link>
         </div>
       </div>

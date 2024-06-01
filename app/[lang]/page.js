@@ -5,19 +5,15 @@ import Catagories from "../components/home/Catagories";
 import Features from "../components/home/Features";
 import Trending from "../components/home/Trending";
 
-// export async function generateStaticParams() {
-//   return ["en", "bn"];
-// }
-
-export default function page() {
+export default function page({ params: { lang } }) {
   return (
     <>
-      <Banner />
-      <Features />
-      <Catagories />
-      <Arrivals />
+      <Banner lang={lang} />
+      <Features lang={lang} />
+      <Catagories lang={lang} />
+      <Arrivals lang={lang} />
       <Ads />
-      <Trending />
+      <Trending lang={lang} />
     </>
   );
 }

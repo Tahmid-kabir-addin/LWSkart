@@ -3,10 +3,11 @@ import { AccountIcon } from "@/public/assets/images/icons/Account";
 import Image from "next/image";
 import Link from "next/link";
 import Cart from "./Cart";
+import LanguageSwitcher from "./LanguageSwitcher";
 import Searchbar from "./Searchbar";
 import Wishlist from "./Wishlist";
 
-export default async function Header() {
+export default async function Header({ lang }) {
   const session = await auth();
   return (
     <header className="py-4 shadow-sm bg-white">
@@ -22,11 +23,11 @@ export default async function Header() {
           />
         </Link>
 
-        <Searchbar />
+        <Searchbar lang={lang} />
 
         <div className="flex items-center space-x-8">
-          <Wishlist />
-          <Cart />
+          <Wishlist lang={lang} />
+          <Cart lang={lang} />
           {session?.user ? (
             <Link
               href="/account"
@@ -52,6 +53,7 @@ export default async function Header() {
           ) : (
             <></>
           )}
+          <LanguageSwitcher />
         </div>
       </div>
     </header>

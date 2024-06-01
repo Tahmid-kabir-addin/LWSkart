@@ -1,6 +1,8 @@
+import { getDictionary } from "@/app/[lang]/dictionaries/dictionaries";
 import ProductCard from "../ProductCard";
 
-export default async function Trending() {
+export default async function Trending({ lang }) {
+  const dict = await getDictionary(lang);
   let products = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`
   ).then((res) => res.json());
@@ -12,7 +14,7 @@ export default async function Trending() {
   return (
     <div className="container pb-16">
       <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
-        TRENDING PRODUCTS
+        {dict.trendingProducts}
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {products.map((product, index) => (

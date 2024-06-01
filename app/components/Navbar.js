@@ -1,13 +1,15 @@
 import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { getDictionary } from "../[lang]/dictionaries/dictionaries";
 import LogoutButton from "./LogoutButton";
 
-export default async function Navbar() {
+export default async function Navbar({ lang }) {
   // const path = usePathname();
   let isLoginPage = false;
   // if (path.includes("login") || path.includes("register")) isLoginPage = true;
   const session = await auth();
+  const dict = await getDictionary(lang);
 
   return (
     <nav className="bg-gray-800">
@@ -20,6 +22,9 @@ export default async function Navbar() {
               width={24}
               height={24}
               alt="bars"
+              Cart
+              in
+              bangla
             ></Image>
           </span>
           <span className="capitalize ml-2 text-white hidden">
@@ -43,7 +48,7 @@ export default async function Navbar() {
                 width={16}
                 height={16}
               />
-              <span className="ml-6 text-gray-600 text-sm">Sofa</span>
+              <span className="ml-6 text-gray-600 text-sm">{dict.sofa}</span>
             </Link>
             <Link
               href="/shop/Living Room Accessories"
@@ -57,7 +62,9 @@ export default async function Navbar() {
                 width={16}
                 height={16}
               />
-              <span className="ml-6 text-gray-600 text-sm">Living Room</span>
+              <span className="ml-6 text-gray-600 text-sm">
+                {dict.livingroom}
+              </span>
             </Link>
             <Link
               href="/shop/Bedroom Accessories"
@@ -71,7 +78,7 @@ export default async function Navbar() {
                 width={16}
                 height={16}
               />
-              <span className="ml-6 text-gray-600 text-sm">Bedroom</span>
+              <span className="ml-6 text-gray-600 text-sm">{dict.bedroom}</span>
             </Link>
             <Link
               href="/shop/Outdoor"
@@ -85,7 +92,7 @@ export default async function Navbar() {
                 width={16}
                 height={16}
               />
-              <span className="ml-6 text-gray-600 text-sm">Outdoor</span>
+              <span className="ml-6 text-gray-600 text-sm">{dict.outdoor}</span>
             </Link>
             <Link
               href="/shop/Mattress"
@@ -99,7 +106,9 @@ export default async function Navbar() {
                 width={16}
                 height={16}
               />
-              <span className="ml-6 text-gray-600 text-sm">Mattress</span>
+              <span className="ml-6 text-gray-600 text-sm">
+                {dict.mattress}
+              </span>
             </Link>
           </div>
         </div>
@@ -110,25 +119,25 @@ export default async function Navbar() {
               href="/"
               className="text-gray-200 hover:text-white transition"
             >
-              Home
+              {dict.home}
             </Link>
             <Link
               href="/shop?category=all"
               className="text-gray-200 hover:text-white transition"
             >
-              Shop
+              {dict.shop}
             </Link>
             <Link
               href="#"
               className="text-gray-200 hover:text-white transition"
             >
-              About us
+              {dict.about}
             </Link>
             <Link
               href="#"
               className="text-gray-200 hover:text-white transition"
             >
-              Contact us
+              {dict.contact}
             </Link>
           </div>
           {session?.user ? (
@@ -138,7 +147,7 @@ export default async function Navbar() {
               href="/login"
               className="text-gray-200 hover:text-white transition"
             >
-              Login
+              {dict.login}
             </Link>
           )}
         </div>

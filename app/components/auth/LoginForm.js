@@ -1,12 +1,12 @@
 "use client";
 import { login } from "@/app/actions/UserActions";
-import Link from "next/link";
+import { dict } from "@/app/dict/dict";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
 import FormError from "./FormError";
 import SubmitButton from "./SubmitButton";
 
-export default function LoginForm() {
+export default function LoginForm({ lang }) {
   const [state, formAction] = useFormState(login, null);
   console.log("🚀 ~ LoginForm ~ state:", state);
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function LoginForm() {
       <div className="space-y-2">
         <div>
           <label htmlFor="email" className="text-gray-600 mb-2 block">
-            Email address
+            {dict(lang, "Email")}
           </label>
           <input
             type="email"
@@ -31,7 +31,7 @@ export default function LoginForm() {
         </div>
         <div>
           <label htmlFor="password" className="text-gray-600 mb-2 block">
-            Password
+            {dict(lang, "Password")}
           </label>
           <input
             type="password"
@@ -42,7 +42,7 @@ export default function LoginForm() {
           />
         </div>
       </div>
-      <div className="flex items-center justify-between mt-6">
+      {/* <div className="flex items-center justify-between mt-6">
         <div className="flex items-center">
           <input
             type="checkbox"
@@ -60,10 +60,10 @@ export default function LoginForm() {
         <Link href="#" className="text-primary">
           Forgot password
         </Link>
-      </div>
+      </div> */}
       {state?.error && <FormError error={state.error} />}
       <div className="mt-4">
-        <SubmitButton buttonText="Login" />
+        <SubmitButton buttonText={dict(lang, "Login")} />
       </div>
     </form>
     // <form className="login-form" action={formAction}>
