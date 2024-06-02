@@ -6,8 +6,9 @@ import {
 } from "@/app/redux/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { dict } from "../dict/dict";
 
-export default function AddToCartButton({ product }) {
+export default function AddToCartButton({ product, lang }) {
   const dispatch = useDispatch();
   const { loading, cartItems } = useSelector((state) => state.cart);
   const handleAddToCart = () => {
@@ -49,7 +50,7 @@ export default function AddToCartButton({ product }) {
       onClick={handleAddToCart}
       disabled={product?.stock < 1}
     >
-      Add to cart
+      {dict(lang, "Add to cart")}{" "}
     </button>
   );
 }

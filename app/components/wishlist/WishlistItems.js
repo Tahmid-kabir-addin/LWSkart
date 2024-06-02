@@ -1,4 +1,5 @@
 "use client";
+import { dict } from "@/app/dict/dict";
 import {
   addToCart,
   hideLoading,
@@ -12,16 +13,16 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-export default function WishlistItems() {
+export default function WishlistItems({ lang }) {
   const { loading, wishlistItems } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
 
   if (wishlistItems.length === 0)
     return (
       <div className="text-xl font-medium pt-5">
-        No items in wishlist. Explore items{" "}
+        {dict(lang, "No items in wishlist. Explore items")}{" "}
         <Link href="/shop" className="text-blue-700">
-          Here
+          {dict(lang, "here")}
         </Link>
       </div>
     );
@@ -74,13 +75,19 @@ export default function WishlistItems() {
                   {item.name}
                 </h2>
                 <p className="text-gray-500 text-sm">
-                  Availability:{" "}
+                  {lang === "en" ? "Availability" : "উপযোগিতা"}:{" "}
                   <span
                     className={
                       item.stock > 0 ? "text-green-600" : "text-red-600"
                     }
                   >
-                    {item.stock > 0 ? "In Stock" : "Out of Stock"}
+                    {item.stock > 0
+                      ? lang === "en"
+                        ? "In Stock"
+                        : "সটকে আছে"
+                      : lang === "en"
+                      ? "Out of Stock"
+                      : "স্টকে নেই"}
                   </span>
                 </p>
               </div>
@@ -95,7 +102,13 @@ export default function WishlistItems() {
                   <div className="">
                     <TrashIcon />
                   </div>
-                  Remove
+                  {!loading
+                    ? lang === "en"
+                      ? "Remove"
+                      : "মুছে ফেলুন"
+                    : lang === "en"
+                    ? "Removing..."
+                    : "মুছে ফেলা হচ্ছে..."}
                 </button>
                 <button
                   className={`flex px-6 py-2 gap-2 text-center text-sm text-white ${
@@ -109,7 +122,7 @@ export default function WishlistItems() {
                   <div className="">
                     <CartIcon />
                   </div>
-                  Add to cart
+                  {dict(lang, "Add to cart")}
                 </button>
               </div>
             </div>

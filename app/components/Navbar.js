@@ -141,7 +141,7 @@ export default async function Navbar({ lang }) {
             </Link>
           </div>
           {session?.user ? (
-            <LogoutButton />
+            <LogoutButton lang={lang} />
           ) : (
             <Link
               href="/login"

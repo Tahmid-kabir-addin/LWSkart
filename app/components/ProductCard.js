@@ -67,7 +67,7 @@ export default async function ProductCard({ product, lang }) {
           </div>
         </div>
       </div>
-      <AddToCartButton product={product} />
+      <AddToCartButton product={product} lang={lang} />
     </div>
   );
 }

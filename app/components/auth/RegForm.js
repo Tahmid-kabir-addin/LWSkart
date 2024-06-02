@@ -1,5 +1,6 @@
 "use client";
 import { register } from "@/app/actions/UserActions";
+import { dict } from "@/app/dict/dict";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -7,10 +8,9 @@ import { useFormState } from "react-dom";
 import FormError from "./FormError";
 import SubmitButton from "./SubmitButton";
 
-export default function RegForm() {
+export default function RegForm({ lang }) {
   const [state, formAction] = useFormState(register, null);
   const [isChecked, setIsChecked] = useState(false);
-  console.log("🚀 ~ RegForm ~ state:", state);
   const router = useRouter();
   if (state?.success) router.push("/login");
 
@@ -23,7 +23,7 @@ export default function RegForm() {
       <div className="space-y-2">
         <div>
           <label htmlFor="name" className="text-gray-600 mb-2 block">
-            Full Name
+            {dict(lang, "Full Name")}
           </label>
           <input
             type="text"
@@ -39,7 +39,7 @@ export default function RegForm() {
         <div></div>
         <div>
           <label htmlFor="email" className="text-gray-600 mb-2 block">
-            Email
+            {dict(lang, "Email")}
           </label>
           <input
             type="email"
@@ -54,7 +54,7 @@ export default function RegForm() {
         </div>
         <div>
           <label htmlFor="phone" className="text-gray-600 mb-2 block">
-            Phone Number
+            {dict(lang, "Phone Number")}
           </label>
           <input
             type="tel"
@@ -71,7 +71,7 @@ export default function RegForm() {
 
         <div>
           <label htmlFor="password" className="text-gray-600 mb-2 block">
-            Password
+            {dict(lang, "Password")}
           </label>
           <input
             type="password"
@@ -89,7 +89,7 @@ export default function RegForm() {
 
         <div>
           <label htmlFor="confirm" className="text-gray-600 mb-2 block">
-            Confirm password
+            {dict(lang, "Confirm Password")}
           </label>
           <input
             type="password"
@@ -112,16 +112,19 @@ export default function RegForm() {
             htmlFor="aggrement"
             className="text-gray-600 ml-3 cursor-pointer"
           >
-            I have read and agree to the{" "}
+            {dict(lang, "I agree to the")}{" "}
             <Link href="#" className="text-primary">
-              terms & conditions
+              {dict(lang, "terms and conditions")}
             </Link>
           </label>
         </div>
       </div>
       {state?.error && <FormError error={state.error} />}
       <div className="mt-4">
-        <SubmitButton buttonText="Register" isDisabled={!isChecked} />
+        <SubmitButton
+          buttonText={dict(lang, "Register")}
+          isDisabled={!isChecked}
+        />
       </div>
     </form>
   );

@@ -1,5 +1,6 @@
 import { getProductById } from "@/app/actions/ProductActions";
 import ProductDetails from "@/app/components/product/ProductDetails";
+import { dict } from "@/app/dict/dict";
 import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
 import Link from "next/link";
@@ -15,9 +16,11 @@ export default async function page({ params }) {
         <span className="text-sm text-gray-400">
           <ChevronRight />
         </span>
-        <p className="text-gray-600 font-medium">Product</p>
+        <p className="text-gray-600 font-medium">
+          {dict(params.lang, "Product")}
+        </p>
       </div>
-      <ProductDetails product={product} />
+      <ProductDetails product={product} lang={params.lang} />
     </>
   );
 }

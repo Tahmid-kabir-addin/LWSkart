@@ -1,4 +1,5 @@
 import { getProductByCategoryName } from "@/app/actions/ProductActions";
+import { dict } from "@/app/dict/dict";
 import { Star } from "@/public/assets/images/icons/Star";
 import { faFire } from "@fortawesome/free-solid-svg-icons"; // Import the trending icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,7 +8,7 @@ import ProductCard from "../ProductCard";
 import Interactions from "./Interactions";
 import SocialShare from "./SocialShare";
 
-export default async function ProductDetails({ product }) {
+export default async function ProductDetails({ product, lang }) {
   console.log("🚀 ~ ProductDetails ~ product:", product);
   let products = await getProductByCategoryName(product?.category);
   products = products
@@ -23,7 +24,7 @@ export default async function ProductDetails({ product }) {
             <div className="absolute top-2 right-2 text-red-500 flex items-center gap-1">
               <FontAwesomeIcon icon={faFire} size="lg" />
               <span className="text-white bg-red-500 px-2 py-1 rounded">
-                Trending
+                {dict(lang, "Trending")}
               </span>
             </div>
           )}
@@ -107,30 +108,38 @@ export default async function ProductDetails({ product }) {
               <span className="text-black text-sm">{product?.rating}</span>
             </div>
             <div className="text-xs text-gray-500 ml-3">
-              ({product?.reviewCount} reviews)
+              ({product?.reviewCount} {dict(lang, "Reviews")})
             </div>
           </div>
           <div className="space-y-2">
             <p className="text-gray-800 font-semibold space-x-2">
-              <span>Availability: </span>
+              <span>{dict(lang, "Availability")}: </span>
               <span
                 className={`${
                   product?.stock > 0 ? "text-green-600" : "text-red-600"
                 }`}
               >
-                {product?.stock > 0 ? "In Stock" : "Out of Stock"}
+                {product?.stock > 0
+                  ? dict(lang, "In Stock")
+                  : dict(lang, "Out of Stock")}
               </span>
             </p>
             <p className="space-x-2">
-              <span className="text-gray-800 font-semibold">Brand: </span>
+              <span className="text-gray-800 font-semibold">
+                {dict(lang, "Brand")}:{" "}
+              </span>
               <span className="text-gray-600">{product?.brand}</span>
             </p>
             <p className="space-x-2">
-              <span className="text-gray-800 font-semibold">Category: </span>
+              <span className="text-gray-800 font-semibold">
+                {dict(lang, "Category")}:{" "}
+              </span>
               <span className="text-gray-600">{product?.category}</span>
             </p>
             <p className="space-x-2">
-              <span className="text-gray-800 font-semibold">SKU: </span>
+              <span className="text-gray-800 font-semibold">
+                {dict(lang, "SKU")}:{" "}
+              </span>
               <span className="text-gray-600">{product?.SKU}</span>
             </p>
           </div>
@@ -144,20 +153,23 @@ export default async function ProductDetails({ product }) {
           </div>
 
           <p className="mt-4 text-gray-600">{product?.description}</p>
-
-          <Interactions product={product} />
-          <SocialShare productId={product?.id} name={product?.name} />
+          <Interactions product={product} lang={lang} />
+          <SocialShare
+            productId={product?.id}
+            name={product?.name}
+            lang={lang}
+          />
         </div>
       </div>
 
       <div className="container pb-16 mt-10">
         <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
           {" "}
-          RELATED PRODUCTS
+          {dict(lang, "Related Products")}
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {products.map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard key={index} product={product} lang={lang} />
           ))}
         </div>
       </div>

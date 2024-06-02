@@ -54,7 +54,7 @@ export default function LanguageSwitcher() {
           } hover:bg-gray-100 focus:outline-none`}
           onClick={() => onLanguageChange("bn")}
         >
-          <span className="text-md">Bn</span>
+          <span className="text-md">বাং</span>
           <span className="ml-2">
             <Image
               width="20"

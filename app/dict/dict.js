@@ -1,5 +1,5 @@
 export const dict = (lang, word) => {
-  if (lang === "en") return word;
+  if (lang === "en" || !lang) return word;
 
   // bn dictionary
   const bn = {
@@ -35,6 +35,53 @@ export const dict = (lang, word) => {
     Google: "গুগল",
     "Don't have account?": "একাউন্ট নেই?",
     "Register Now": "এখনি নিবন্ধন করুন",
+    Product: "পণ্য",
+    Trending: "ট্রেন্ডিং",
+    Reviews: "টি রিভিউ",
+    Availability: "প্রাপ্যতা",
+    "In Stock": "স্টকে আছে",
+    "Out of Stock": "স্টকে নেই",
+    Brand: "ব্র্যান্ড",
+    Category: "বিভাগ",
+    "RELATED PRODUCTS": "সম্পর্কিত পণ্য",
+    "Create an account": "একটি অ্যাকাউন্ট তৈরি করুন",
+    "Add to cart": "কার্টে যোগ করুন",
+    "Adding to cart...": "কার্টে যোগ করা হচ্ছে...",
+    "Add to wishlist": "উইশলিস্টে যোগ করুন",
+    "Share Via": "শেয়ার করুন",
+    Quantity: "পরিমাণ",
+    "Register for new cosutumer": "নতুন গ্রাহকের জন্য নিবন্ধন করুন",
+    "Full Name": "পুরো নাম",
+    "Confirm password": "পাসওয়ার্ড নিশ্চিত করুন",
+    Register: "নিবন্ধন",
+    "Or signup with": "অথবা সাইনআপ করুন",
+    "Already have account?": "আগেই একাউন্ট আছে?",
+    "Login now": "এখনি লগইন করুন",
+    Shop: "দোকান",
+    Categories: "বিভাগ",
+    Bedroom: "বেডরুম",
+    Sofa: "সোফা",
+    Mattress: "তোষক",
+    Outdoor: "আউটডোর",
+    "Living Room": "লিভিং রুম",
+    Price: "মূল্য",
+    min: "সর্বনিম্ন",
+    max: "সর্বোচ্চ",
+    Apply: "প্রয়োগ করুন",
+    Reset: "রিসেট",
+    Size: "আকার",
+    "Reset Filter": "ফিল্টার রিসেট করুন",
+    Previous: "পূর্ববর্তী",
+    Next: "পরবর্তী",
+    "No products found in this category.": "এই বিভাগে কোন পণ্য পাওয়া যায়নি।",
+    "Find more products": "আরো পণ্য খুঁজুন",
+    here: "এখানে",
+    Products: "পণ্য",
+    Wishlist: "উইশলিস্ট",
+    "No items in wishlist. Explore items":
+      "উইশলিস্টে কোন আইটেম নেই। আইটেম অন্বেষণ করুন",
+    "Loading...": "লোড হচ্ছে...",
+    Logout: "লগআউট",
   };
 
   // mapping

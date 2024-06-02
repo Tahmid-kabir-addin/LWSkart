@@ -1,5 +1,6 @@
 "use client";
 import { reduceStock } from "@/app/actions/ProductActions";
+import { dict } from "@/app/dict/dict";
 import {
   addToCart,
   hideLoading,
@@ -14,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import QuantityButtons from "./QuantityButtons";
 
-export default function Interactions({ product }) {
+export default function Interactions({ product, lang }) {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const { loading, cartItems } = useSelector((state) => state.cart);
@@ -85,6 +86,7 @@ export default function Interactions({ product }) {
         handleDecrement={handleDecrement}
         handleIncrement={handleIncrement}
         quantity={quantity}
+        lang={lang}
       />
 
       <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
@@ -100,7 +102,9 @@ export default function Interactions({ product }) {
           <span>
             <CartIcon />
           </span>{" "}
-          {!loading ? "Add to cart" : "Adding to cart..."}
+          {!loading
+            ? dict(lang, "Add to cart")
+            : dict(lang, "Adding to cart...")}
         </button>
         <button
           className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
@@ -109,7 +113,7 @@ export default function Interactions({ product }) {
           <span>
             <Heart />
           </span>{" "}
-          Wishlist
+          {dict(lang, "Add to wishlist")}
         </button>
       </div>
     </>
