@@ -122,7 +122,7 @@ export default async function Navbar({ lang }) {
               {dict.home}
             </Link>
             <Link
-              href={`/${lang}/shop?category=all`}
+              href={`/${lang}/shop`}
               className="text-gray-200 hover:text-white transition"
             >
               {dict.shop}
