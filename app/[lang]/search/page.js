@@ -1,8 +1,12 @@
 "use client";
+import SearchResults from "@/app/components/search/SearchResults";
 import { useRouter } from "next/navigation";
 
-export default function SearchPage() {
+export default function SearchPage({ params: { lang } }) {
   const router = useRouter();
-  router.push("/");
-  return null;
+  return (
+    <>
+      <SearchResults lang={lang} />
+    </>
+  );
 }

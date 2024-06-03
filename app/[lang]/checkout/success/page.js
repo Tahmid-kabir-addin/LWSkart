@@ -2,6 +2,7 @@ import { getRecentOrder } from "@/app/actions/OrderAction";
 import { dict } from "@/app/dict/dict";
 import { auth } from "@/auth";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 export default async function OrderSuccess({ params: { lang } }) {
   const session = await auth();
@@ -37,14 +38,14 @@ export default async function OrderSuccess({ params: { lang } }) {
             "You can download your invoice by clicking the button below."
           )}
         </p>
-        <a
+        <Link
           href={order.pdfLink}
           className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded-md hover:bg-secondary transition"
           download
           rel="noopener noreferrer"
         >
           {dict(lang, "Download Invoice")}
-        </a>
+        </Link>
       </div>
     </div>
   );

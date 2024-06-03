@@ -22,7 +22,7 @@ export default async function Catagories({ lang }) {
             unoptimized
           />
           <Link
-            href="/shop/Bedroom Accessories"
+            href={`/${lang}/shop/Bedroom Accessories`}
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             {dict.bedroom}
@@ -38,7 +38,7 @@ export default async function Catagories({ lang }) {
             fill
           />
           <Link
-            href="/shop/Mattress"
+            href={`/${lang}/shop/Mattress`}
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             {dict.mattress}
@@ -56,7 +56,7 @@ export default async function Catagories({ lang }) {
             unoptimized
           />
           <Link
-            href="/shop/Outdoor"
+            href={`/${lang}/shop/Outdoor`}
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             {dict.outdoor}
@@ -74,7 +74,7 @@ export default async function Catagories({ lang }) {
             unoptimized
           />
           <Link
-            href="/shop/Sofa"
+            href={`/${lang}/shop/Sofa`}
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             {dict.sofa}
@@ -92,7 +92,7 @@ export default async function Catagories({ lang }) {
             unoptimized
           />
           <Link
-            href="/shop/Living Room Accessories"
+            href={`/${lang}/shop/Living Room Accessories`}
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             {dict.livingroom}
@@ -110,7 +110,7 @@ export default async function Catagories({ lang }) {
             unoptimized
           />
           <Link
-            href="/shop/Kitchen Accessories"
+            href={`/${lang}/shop/Kitchen Accessories`}
             className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
           >
             {dict.kitchen}

@@ -10,7 +10,7 @@ export default async function PersonalProfile({ user, lang }) {
           {dict.personalProfile}
         </h3>
         <Link
-          href={`/account/profileEdit/${user?.id}`}
+          href={`/${lang}/account/profileEdit/${user?.id}`}
           className="text-primary"
         >
           {dict.edit}

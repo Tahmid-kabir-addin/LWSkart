@@ -9,7 +9,7 @@ export default function Wishlist({ lang }) {
   console.log("🚀 ~ Wishlist ~ lang:", lang);
   return (
     <Link
-      href="/wishlist"
+      href={`/${lang}/wishlist`}
       className="flex flex-col gap-1 items-center text-center text-gray-700 hover:text-primary transition relative"
     >
       <div className="text-2xl">

@@ -113,7 +113,12 @@ export default function OrderSummary({ lang }) {
 
         <div className="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercas">
           <p>{dict(lang, "Subtotal")}</p>
-          <p>${totalPrice > 1000 ? totalPrice : totalPrice - 50}</p>
+          <p>
+            $
+            {totalPrice > 1000
+              ? totalPrice.toFixed(2)
+              : (totalPrice - 50).toFixed(2)}
+          </p>
         </div>
 
         <div className="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercas">

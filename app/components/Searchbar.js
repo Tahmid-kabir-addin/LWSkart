@@ -2,22 +2,32 @@
 import SearchIcon from "@/public/assets/images/icons/SearchIcon";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useDebounce } from "../hooks/useDebounce";
+import { setSearchQuery } from "../redux/slices/searchSlice";
 
 export default function Searchbar({ q = "", lang }) {
-  console.log("🚀 ~ Searchbar ~ lang:", lang);
   const [query, setQuery] = useState(q);
   const debouncedSearch = useDebounce(query);
+  const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
     if (debouncedSearch) {
-      router.replace(`/search/${debouncedSearch}`);
+      console.log(debouncedSearch);
+      dispatch(setSearchQuery(debouncedSearch));
     }
-  }, [debouncedSearch, router]);
+  }, [debouncedSearch, dispatch]);
+
+  const handleSearchBarClick = () => {
+    router.push("/search");
+  };
 
   return (
-    <div className="w-full max-w-xl relative flex">
+    <div
+      className="w-full max-w-xl relative flex"
+      onClick={handleSearchBarClick}
+    >
       <span className="absolute left-4 top-3 text-lg text-gray-400">
         <SearchIcon />
       </span>

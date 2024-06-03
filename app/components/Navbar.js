@@ -37,7 +37,7 @@ export default async function Navbar({ lang }) {
             // style="width: 300px;"
           >
             <Link
-              href="/shop/Sofa"
+              href={`/${lang}/shop/Sofa`}
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
@@ -51,7 +51,7 @@ export default async function Navbar({ lang }) {
               <span className="ml-6 text-gray-600 text-sm">{dict.sofa}</span>
             </Link>
             <Link
-              href="/shop/Living Room Accessories"
+              href={`/${lang}/shop/Living Room Accessories`}
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
@@ -67,7 +67,7 @@ export default async function Navbar({ lang }) {
               </span>
             </Link>
             <Link
-              href="/shop/Bedroom Accessories"
+              href={`/${lang}/shop/Bedroom Accessories`}
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
@@ -81,7 +81,7 @@ export default async function Navbar({ lang }) {
               <span className="ml-6 text-gray-600 text-sm">{dict.bedroom}</span>
             </Link>
             <Link
-              href="/shop/Outdoor"
+              href={`/${lang}/shop/Outdoor`}
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
@@ -95,7 +95,7 @@ export default async function Navbar({ lang }) {
               <span className="ml-6 text-gray-600 text-sm">{dict.outdoor}</span>
             </Link>
             <Link
-              href="/shop/Mattress"
+              href={`/${lang}/shop/Mattress`}
               className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
             >
               <Image
@@ -116,13 +116,13 @@ export default async function Navbar({ lang }) {
         <div className="flex items-center justify-between flex-grow md:pl-12 py-5">
           <div className="flex items-center space-x-6 capitalize">
             <Link
-              href="/"
+              href={`/${lang}`}
               className="text-gray-200 hover:text-white transition"
             >
               {dict.home}
             </Link>
             <Link
-              href="/shop?category=all"
+              href={`/${lang}/shop?category=all`}
               className="text-gray-200 hover:text-white transition"
             >
               {dict.shop}
@@ -144,7 +144,7 @@ export default async function Navbar({ lang }) {
             <LogoutButton lang={lang} />
           ) : (
             <Link
-              href="/login"
+              href={`/${lang}/login`}
               className="text-gray-200 hover:text-white transition"
             >
               {dict.login}

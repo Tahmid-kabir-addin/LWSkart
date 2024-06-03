@@ -11,7 +11,7 @@ export default async function page({ params: { lang } }) {
   return (
     <>
       <div className="container py-4 flex items-center gap-3">
-        <a href="../index.html" className="text-primary text-base">
+        <a href={`/${lang}`} className="text-primary text-base">
           <House />
         </a>
         <span className="text-sm text-gray-400">

@@ -12,7 +12,7 @@ export default async function Header({ lang }) {
   return (
     <header className="py-4 shadow-sm bg-white">
       <div className="container flex items-center justify-between">
-        <Link href="/">
+        <Link href={`/${lang}`}>
           <Image
             blurDataURL="/assets/images/blurImage.jpg"
             src="/assets/images/logo.svg"

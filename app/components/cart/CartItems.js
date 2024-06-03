@@ -34,7 +34,7 @@ export default function CartItems({ lang }) {
         {lang === "en"
           ? "No items in cart. Explore items"
           : "কার্টে কোনো পণ্য নেই। পণ্য খুঁজুন"}{" "}
-        <Link href="/shop" className="text-blue-700">
+        <Link href={`/${lang}/shop`} className="text-blue-700">
           {lang === "en" ? "Here" : "এখানে"}
         </Link>
       </div>
@@ -123,7 +123,7 @@ export default function CartItems({ lang }) {
           {totalPrice.toFixed(2)}
         </div>
         <Link
-          href="/checkout"
+          href={`/${lang}/checkout`}
           className="px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-bold"
         >
           {lang === "en" ? "Proceed to Checkout" : "চেকআউট করুন"}

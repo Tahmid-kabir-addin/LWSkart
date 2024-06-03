@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Ads() {
+export default function Ads({ lang }) {
   return (
     <div className="container pb-16">
-      <Link href="/shop">
+      <Link href={`/${lang}/shop`}>
         <Image
           placeholder="blur"
           blurDataURL="/assets/images/blurImage.jpg"

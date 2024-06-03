@@ -12,7 +12,7 @@ export default function page({ params: { lang } }) {
       <Features lang={lang} />
       <Catagories lang={lang} />
       <Arrivals lang={lang} />
-      <Ads />
+      <Ads lang={lang} />
       <Trending lang={lang} />
     </>
   );

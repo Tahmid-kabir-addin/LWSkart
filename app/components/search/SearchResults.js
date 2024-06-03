@@ -7,15 +7,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-export default function SearchResults({ query }) {
-  const q = useSearchParams();
-  console.log("🚀 ~ SearchResults ~ q:", q);
+export default function SearchResults({ lang }) {
+  let { searchQuery } = useSelector((state) => state.search);
+  const query = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  // const [category, setCategory] = useState(query.entries.category || "");
+  const [category, setCategory] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
+  const [minFinalPrice, setMinFinalPrice] = useState(0);
+  const [maxFinalPrice, setMaxFinalPrice] = useState(0);
   const [size, setSize] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [bedRoomQty, setBedRoomQty] = useState(0);
@@ -31,12 +34,23 @@ export default function SearchResults({ query }) {
 
   useEffect(() => {
     const fetchFilteredProducts = async () => {
-      console.log("hello from useeffect");
+      let searchString = `q=${searchQuery}`;
+      if (category.length > 0) {
+        searchString += `&category=${category}`;
+      }
+      if (minFinalPrice > 0) {
+        searchString += `&minPrice=${minFinalPrice}`;
+      }
+      if (maxFinalPrice > 0) {
+        searchString += `&maxPrice=${maxFinalPrice}`;
+      }
+      if (size.length > 0) {
+        searchString += `&size=${size}`;
+      }
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/search?q=${q}`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/search?${searchString}`
       );
       const data = await res.json();
-      console.log("🚀 ~ fetchFilteredProducts ~ data:", data);
       setPageNumber(Math.ceil(data.length / 12));
       // set all the qty by category
       setBedRoomQty(
@@ -58,20 +72,17 @@ export default function SearchResults({ query }) {
     };
 
     fetchFilteredProducts();
-  }, [q, currentPage]);
+  }, [searchQuery, currentPage, category, size, minFinalPrice, maxFinalPrice]);
 
   const handleFilterChange = (type, value = "") => {
-    setLoading(true);
-    const current = new URLSearchParams(q.toString());
-    current.delete("page");
+    // setLoading(true);
     setCurrentPage(1);
 
     if (type === "resetAll") {
-      current.delete("category");
-      current.delete("minPrice");
-      current.delete("maxPrice");
-      current.delete("size");
-
+      setCategory("");
+      setMinPrice(0);
+      setMaxPrice(0);
+      setSize("");
       // reset all the checkboxes
       const checkboxes = document.querySelectorAll("input[type=checkbox]");
       checkboxes.forEach((checkbox) => {
@@ -84,72 +95,78 @@ export default function SearchResults({ query }) {
         price.value = "";
       });
     }
-    if (type === "category" && current.has("category")) {
-      const category = current.get("category").split(",");
-      if (category.includes(value)) {
-        const index = category.indexOf(value);
-        category.splice(index, 1);
+
+    if (type === "category" && category.length > 0) {
+      const cat = category.split(",");
+      if (cat.includes(value)) {
+        const index = cat.indexOf(value);
+        cat.splice(index, 1);
+        console.log("🚀 ~ handleFilterChange ~ cat:", cat);
+
         // if category is empty, remove the category key from the query
-        if (category.length === 0) {
-          current.delete("category");
+        if (cat.length === 0) {
+          setCategory("");
         } else {
-          current.set("category", category.join(","));
+          setCategory(cat.toString());
         }
       } else {
-        current.set("category", `${current.get("category")},${value}`);
+        setCategory((category) => category + "," + value);
       }
       setLoading(false);
     } else if (type === "category") {
-      current.set("category", value);
+      setCategory(value);
     }
 
     if (type === "resetPrice") {
-      current.delete("minPrice");
-      current.delete("maxPrice");
+      setMinFinalPrice(0);
+      setMaxFinalPrice(0);
+      const prices = document.querySelectorAll("input[type=text]");
+      prices.forEach((price) => {
+        price.value = "";
+      });
     }
 
     if (type === "price") {
-      if (minPrice) {
-        current.set("minPrice", minPrice);
+      // if minPrice and maxPrice are empty, remove the price key from the query
+      if (minPrice === 0 && maxPrice === 0) {
+        setMinFinalPrice(0);
+        setMaxFinalPrice(0);
+      } else {
+        setMinFinalPrice(minPrice);
+        setMaxFinalPrice(maxPrice);
       }
-      if (maxPrice) {
-        current.set("maxPrice", maxPrice);
-      }
-    } else if (type === "size" && current.has("size")) {
-      const size = current.get("size").split(",");
-      if (size.includes(value)) {
-        const index = size.indexOf(value);
-        size.splice(index, 1);
+    } else if (type === "size" && size.length > 0) {
+      const sz = size.split(",");
+      if (sz.includes(value)) {
+        const index = sz.indexOf(value);
+        sz.splice(index, 1);
         // if size is empty, remove the size key from the query
-        if (size.length === 0) {
-          current.delete("size");
+        if (sz.length === 0) {
+          setSize("");
         } else {
-          current.set("size", size.join(","));
+          setSize(sz.toString());
         }
       } else {
-        current.set("size", `${current.get("size")},${value}`);
+        setSize((size) => size + "," + value);
       }
     } else if (type === "size") {
-      current.set("size", value);
+      setSize(value);
     }
-    window.history.pushState(null, "", `?${current.toString()}`);
   };
 
   const handlePageChange = (page) => {
-    const current = new URLSearchParams(q.toString());
     if (page === 1) {
-      current.delete("page");
+      setCurrentPage(1);
     } else {
-      current.set("page", page);
+      setCurrentPage(page);
     }
     setCurrentPage(page);
-    window.history.pushState(null, "", `?${current.toString()}`);
   };
 
   return (
     <>
       <div className="container py-4 flex items-center gap-3">
-        <Link href="/" className="text-primary text-base">
+        <Link href={`/${lang}`} className="text-primary text-base">
           <House />
         </Link>
         <span className="text-sm text-gray-400">
@@ -319,9 +336,7 @@ export default function SearchResults({ query }) {
                   id="min"
                   className="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
                   placeholder="min"
-                  onChange={(e) =>
-                    handleFilterChange("minPrice", e.target.value)
-                  }
+                  onChange={(e) => setMinPrice(e.target.value)}
                 />
                 <span className="mx-3 text-gray-500">-</span>
                 <input
@@ -330,9 +345,7 @@ export default function SearchResults({ query }) {
                   id="max"
                   className="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
                   placeholder="max"
-                  onChange={(e) =>
-                    handleFilterChange("maxPrice", e.target.value)
-                  }
+                  onChange={(e) => setMaxPrice(e.target.value)}
                 />
               </div>
             </div>

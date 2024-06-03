@@ -2,6 +2,7 @@ import CartItems from "@/app/components/cart/CartItems";
 import { auth } from "@/auth";
 import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getDictionary } from "../dictionaries/dictionaries";
 
@@ -13,9 +14,9 @@ export default async function page({ params: { lang } }) {
   return (
     <>
       <div className="container py-4 flex items-center gap-3">
-        <a href="../index.html" className="text-primary text-base">
+        <Link href={`/${lang}`} className="text-primary text-base">
           <House />
-        </a>
+        </Link>
         <span className="text-sm text-gray-400">
           <ChevronRight />
         </span>

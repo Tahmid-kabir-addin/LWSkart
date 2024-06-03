@@ -75,7 +75,9 @@ export const OrderPdf = ({ data }) => {
                   >
                     Subtotal
                   </td>
-                  <td class="border px-4 py-2">${data.subTotalPrice}</td>
+                  <td class="border px-4 py-2">
+                    ${parseFloat(data.subTotalPrice).toFixed(2)}
+                  </td>
                 </tr>
                 <tr>
                   <td

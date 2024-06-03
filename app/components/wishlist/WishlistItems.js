@@ -21,7 +21,7 @@ export default function WishlistItems({ lang }) {
     return (
       <div className="text-xl font-medium pt-5">
         {dict(lang, "No items in wishlist. Explore items")}{" "}
-        <Link href="/shop" className="text-blue-700">
+        <Link href={`/${lang}/shop`} className="text-blue-700">
           {dict(lang, "here")}
         </Link>
       </div>

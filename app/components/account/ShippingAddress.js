@@ -10,7 +10,7 @@ export default async function ShippingAddress({ ShippingAddress, lang }) {
           {dict.shippingAddress}
         </h3>
         <Link
-          href={`/account/shippingEdit/${ShippingAddress?.id}`}
+          href={`/${lang}/account/shippingEdit/${ShippingAddress?.id}`}
           className="text-primary"
         >
           {dict.edit}

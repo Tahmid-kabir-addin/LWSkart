@@ -18,7 +18,7 @@ export default function page({ params: { lang } }) {
 
         <p className="mt-4 text-center text-gray-600">
           {dict(lang, "Don't have account?")}{" "}
-          <Link href="/register" className="text-primary">
+          <Link href={`/${lang}/register`} className="text-primary">
             {dict(lang, "Register Now")}
           </Link>
         </p>

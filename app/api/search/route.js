@@ -2,9 +2,8 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
   let query = request.nextUrl.searchParams;
-  console.log("🚀 ~ GET ~ query:", query);
-  const q = query.get("q");
-  const { category, minPrice, maxPrice, size } = Object.fromEntries(query);
+  const { q, category, minPrice, maxPrice, size } = Object.fromEntries(query);
+  query = q;
   const filters = {};
   if (category) {
     filters.category = {
@@ -30,10 +29,7 @@ export async function GET(request) {
       in: size.split(","),
     };
   }
-  // if q is in the form like clock?clock= then take the value before ?
-  if (q) {
-    query = q.split("?")[0];
-  }
+
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`

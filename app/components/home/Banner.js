@@ -18,7 +18,7 @@ export default async function Banner({ lang }) {
         </p>
         <div className="mt-12">
           <Link
-            href="/shop"
+            href={`/${lang}/shop`}
             className="bg-primary border border-primary text-white px-8 py-3 font-medium 
                     rounded-md hover:bg-transparent hover:text-primary"
           >

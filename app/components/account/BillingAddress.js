@@ -10,7 +10,7 @@ export default async function BillingAddress({ BillingAddress, lang }) {
           {dict.billingAddress}
         </h3>
         <Link
-          href={`/account/billingEdit/${BillingAddress?.id}`}
+          href={`/${lang}/account/billingEdit/${BillingAddress?.id}`}
           className="text-primary"
         >
           {dict.edit}

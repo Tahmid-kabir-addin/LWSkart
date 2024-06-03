@@ -27,7 +27,7 @@ export default async function page({ params: { categoryName, lang } }) {
         <div className="text-center text-lg text-gray-600 mt-4">
           <h1>{dict(lang, "No products found in this category.")}</h1>
           {dict(lang, "Find more products")}{" "}
-          <Link href="/shop" className="text-blue-700">
+          <Link href={`/${lang}/shop`} className="text-blue-700">
             {dict(lang, "here")}
           </Link>
         </div>
