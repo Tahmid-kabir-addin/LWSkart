@@ -1,4 +1,8 @@
-import { getUser } from "@/app/actions/UserActions";
+import {
+  createBilling,
+  createShipping,
+  getUser,
+} from "@/app/actions/UserActions";
 import BillingAddress from "@/app/components/account/BillingAddress";
 import PersonalProfile from "@/app/components/account/PersonalProfile";
 import ShippingAddress from "@/app/components/account/ShippingAddress";
@@ -13,7 +17,11 @@ export default async function page({ params: { lang } }) {
   const dict = await getDictionary(lang);
   const session = await auth();
   if (!session) redirect("/login");
-  const user = await getUser(session?.user?.email);
+  let user = await getUser(session?.user?.email);
+  console.log("🚀 ~ page ~ user:", user);
+  if (!user.BillingAddress) await createBilling();
+  if (!user.ShippingAddress) await createShipping();
+  user = await getUser(user?.email);
   return (
     <>
       <div className="container py-4 flex items-center gap-3">

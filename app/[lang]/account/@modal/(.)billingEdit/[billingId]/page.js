@@ -1,5 +1,8 @@
 import { getDictionary } from "@/app/[lang]/dictionaries/dictionaries";
-import { getBillingAddressById } from "@/app/actions/UserActions";
+import {
+  createBilling,
+  getBillingAddressById,
+} from "@/app/actions/UserActions";
 import Modal from "@/app/components/Modal";
 import BillingUpdateForm from "@/app/components/account/BillingUpdateForm";
 import { auth } from "@/auth";
@@ -9,7 +12,12 @@ export default async function page({ params }) {
   const dict = await getDictionary(params.lang);
   const session = await auth();
   if (!session) redirect("/login");
-  const billing = await getBillingAddressById(params.billingId);
+  let billing = null;
+  if (params.billingId !== "undefined") {
+    billing = await getBillingAddressById(params.billingId);
+  } else {
+    billing = await createBilling();
+  }
   return (
     <Modal>
       <div className="contain py-16 ">

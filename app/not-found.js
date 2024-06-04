@@ -5,7 +5,6 @@ export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-cente">
       <Image
-        placeholder="blur"
         src="/assets/images/404_animation.gif"
         height={700}
         width={700}

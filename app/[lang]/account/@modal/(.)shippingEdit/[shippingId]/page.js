@@ -1,5 +1,5 @@
 import { getDictionary } from "@/app/[lang]/dictionaries/dictionaries";
-import { getShippingAddressById } from "@/app/actions/UserActions";
+import { createShipping, getShippingAddressById } from "@/app/actions/UserActions";
 import Modal from "@/app/components/Modal";
 import ShippingUpdateForm from "@/app/components/account/ShippingUpdateForm";
 import { auth } from "@/auth";
@@ -9,7 +9,12 @@ export default async function page({ params }) {
   const dict = await getDictionary(params.lang);
   const session = await auth();
   if (!session) redirect("/login");
-  const shipping = await getShippingAddressById(params.shippingId);
+  let shipping = null;
+  if (params.shippingId !== "undefined") {
+    shipping = await getShippingAddressById(params.shippingId);
+  } else {
+    shipping = await createShipping()
+  }
   return (
     <Modal>
       <div className="contain py-16 ">

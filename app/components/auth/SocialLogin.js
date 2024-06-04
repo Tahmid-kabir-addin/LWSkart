@@ -5,11 +5,11 @@ import { signIn } from "next-auth/react";
 
 export default function SocialLogin({ lang }) {
   const handleGoogleAuth = async () => {
-    signIn("google", { callbackUrl: "/" });
+    signIn("google", { callbackUrl: `/${lang}` });
   };
 
   const handleFacebookAuth = async () => {
-    signIn("facebook", { callbackUrl: "/" });
+    signIn("facebook", { callbackUrl: `/${lang}` });
   };
   return (
     <>

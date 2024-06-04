@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn } from "@/auth";
+import { auth, signIn } from "@/auth";
 import prisma from "@/prisma";
 import { ObjectId } from "mongodb";
 
@@ -54,6 +54,7 @@ export async function getUser(email) {
         BillingAddress: true,
       },
     });
+    console.log("🚀 ~ getUser ~ user:", user);
     if (user) return user;
     else throw new Error("User not found");
   } catch (error) {
@@ -196,5 +197,83 @@ export async function getShippingAddressById(shippingId) {
   } catch (error) {
     console.error("Error fetching billing address by ID:", error);
     throw new Error("Unable to fetch billing address");
+  }
+}
+
+export async function createShipping() {
+  const session = await auth();
+  let user = session?.user;
+  try {
+    user = await getUser(user?.email);
+
+    // find user with email and updated ShippingAddress to the user
+
+    const ShippingAddress = await prisma.ShippingAddress.create({
+      data: {
+        name: user.name,
+        email: user.email,
+        phone: "01234567890",
+        user: {
+          connect: {
+            email: user.email,
+          },
+        },
+      },
+    });
+
+    // now connect this with the user
+    await prisma.users.update({
+      where: { email: user.email },
+      data: {
+        ShippingAddress: {
+          connect: {
+            id: ShippingAddress.id,
+          },
+        },
+      },
+    });
+    return ShippingAddress;
+  } catch (error) {
+    console.error("Error creating shipping address:", error);
+    throw new Error("Unable to create shipping address");
+  }
+}
+
+export async function createBilling() {
+  const session = await auth();
+  let user = session?.user;
+  try {
+    user = await getUser(user?.email);
+
+    // find user with email and updated ShippingAddress to the user
+
+    const BillingAddress = await prisma.BillingAddress.create({
+      data: {
+        name: user.name,
+        email: user.email,
+        phone: "01234567890",
+        user: {
+          connect: {
+            email: user.email,
+          },
+        },
+      },
+    });
+
+    // now connect this with the user
+    await prisma.users.update({
+      where: { email: user.email },
+      data: {
+        BillingAddress: {
+          connect: {
+            id: BillingAddress.id,
+          },
+        },
+      },
+    });
+    return BillingAddress;
+  } catch (error) {
+    console.error("Error creating Billing address:", error);
+    throw new Error("Unable to create Billing address");
   }
 }
