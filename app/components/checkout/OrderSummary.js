@@ -1,10 +1,11 @@
 "use client";
 import { createOrder } from "@/app/actions/OrderAction";
 import { dict } from "@/app/dict/dict";
+import { removeFromCart } from "@/app/redux/slices/cartSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FormError from "../auth/FormError";
 import CheckoutForm from "./CheckoutForm";
 import OrderConfirmLoader from "./OrderConfirmLoader";
@@ -12,6 +13,7 @@ import OrderConfirmModal from "./OrderConfirmModal";
 
 export default function OrderSummary({ lang }) {
   // const [state, formAction] = useFormState(createOrder, null);
+  const dispatch = useDispatch();
   const { loading, cartItems } = useSelector((state) => state.cart);
   const [totalPrice, setTotalPrice] = useState(0);
   const [agreed, setAgreed] = useState(false);
@@ -26,10 +28,10 @@ export default function OrderSummary({ lang }) {
     const placeOrder = async () => {
       try {
         const res = await createOrder(data);
-        console.log("🚀 ~ placeOrder ~ res:", res)
+        console.log("🚀 ~ placeOrder ~ res:", res);
         if (res.success) {
+          cartItems.map((item) => dispatch(removeFromCart({ id: item.id })));
           const { order } = res;
-          console.log("🚀 ~ placeOrder ~ order:", order)
           // setLoadingPage(false);
           router.push(`/checkout/success/${order.id}`);
         } else {
@@ -45,7 +47,7 @@ export default function OrderSummary({ lang }) {
       setLoadingPage(true);
       placeOrder();
     }
-  }, [orderConfirmed, data, router]);
+  }, [orderConfirmed, data, router, cartItems, dispatch]);
 
   useEffect(() => {
     if (!loading) {
