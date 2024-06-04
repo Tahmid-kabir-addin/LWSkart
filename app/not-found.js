@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Not Found",
+  description: "",
+};
+
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-cente">
