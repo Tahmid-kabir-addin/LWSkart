@@ -1,6 +1,7 @@
 "use client";
 import Loader from "@/app/components/loading";
 import Products from "@/app/components/shop/Products";
+import { dict } from "@/app/dict/dict";
 import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
 import Image from "next/image";
@@ -444,7 +445,7 @@ export default function SearchResults({ lang }) {
           <div className="divide-y divide-gray-200 space-y-5">
             <div>
               <h3 className="text-xl text-gray-800 mb-3 uppercase font-medium">
-                Categories
+                {dict(lang, "Categories")}
               </h3>
               <div className="space-y-2">
                 <div className="flex items-center">
@@ -462,7 +463,7 @@ export default function SearchResults({ lang }) {
                     htmlFor="cat-1"
                     className="text-gray-600 ml-3 cursor-pointer"
                   >
-                    Bedroom
+                    {dict(lang, "Bedroom")}
                   </label>
                   <div className="ml-auto text-gray-600 text-sm">
                     ({bedRoomQty})
@@ -483,7 +484,7 @@ export default function SearchResults({ lang }) {
                     htmlFor="cat-2"
                     className="text-gray-600 ml-3 cursor-pointer"
                   >
-                    Sofa
+                    {dict(lang, "Sofa")}
                   </label>
                   <div className="ml-auto text-gray-600 text-sm">
                     ({sofaQty})
@@ -504,7 +505,7 @@ export default function SearchResults({ lang }) {
                     htmlFor="cat-3"
                     className="text-gray-600 ml-3 cursor-pointer"
                   >
-                    Mattress
+                    {dict(lang, "Mattress")}
                   </label>
                   <div className="ml-auto text-gray-600 text-sm">
                     ({mattressQty})
@@ -525,7 +526,7 @@ export default function SearchResults({ lang }) {
                     htmlFor="cat-4"
                     className="text-gray-600 ml-3 cursor-pointer"
                   >
-                    Outdoor
+                    {dict(lang, "Outdoor")}
                   </label>
                   <div className="ml-auto text-gray-600 text-sm">
                     ({outdoorQty})
@@ -546,7 +547,7 @@ export default function SearchResults({ lang }) {
                     htmlFor="cat-4"
                     className="text-gray-600 ml-3 cursor-pointer"
                   >
-                    Living Room
+                    {dict(lang, "Living Room")}
                   </label>
                   <div className="ml-auto text-gray-600 text-sm">
                     ({livingRoomQty})
@@ -557,7 +558,7 @@ export default function SearchResults({ lang }) {
 
             <div className="pt-4 flex flex-col gap-2">
               <h3 className="text-xl text-gray-800 mb-3 uppercase font-medium">
-                Price
+                {dict(lang, "Price")}
               </h3>
               <div className="mt-4 flex items-center">
                 <input
@@ -587,13 +588,13 @@ export default function SearchResults({ lang }) {
                   className="text-white bg-primary hover:bg-white hover:text-primary hover:outline focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-2 focus:outline-none"
                   onClick={() => handleFilterChange("price")}
                 >
-                  Apply
+                  {dict(lang, "Apply")}
                 </button>
                 <button
                   className="text-white bg-primary hover:bg-white hover:text-primary hover:outline focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-2 focus:outline-none"
                   onClick={() => handleFilterChange("resetPrice")}
                 >
-                  Reset
+                  {dict(lang, "Reset")}
                 </button>
               </div>
             </div>
@@ -689,11 +690,12 @@ export default function SearchResults({ lang }) {
               className="text-white bg-primary hover:bg-white hover:text-primary hover:outline focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-2 focus:outline-none"
               onClick={() => handleFilterChange("resetAll")}
             >
-              Reset Filter
+              {dict(lang, "Reset Filter")}
             </button>
           </div>
         </div>
         <div className="col-span-3">
+          <h1 className="text-xl">Search Results for {searchQuery}</h1>
           {!loading ? (
             <Products products={products} />
           ) : (
@@ -726,7 +728,7 @@ export default function SearchResults({ lang }) {
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === pageNumber}
               >
-                Next
+                {dict(lang, "Next")}
               </button>
             </div>
           )}
