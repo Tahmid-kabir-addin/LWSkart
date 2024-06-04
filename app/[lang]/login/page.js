@@ -2,7 +2,10 @@ import LoginForm from "@/app/components/auth/LoginForm";
 import SocialLogin from "@/app/components/auth/SocialLogin";
 import { dict } from "@/app/dict/dict";
 import Link from "next/link";
-
+export const metadata = {
+  title: "Login - LWSkart",
+  description: "E-commerce website for your home appliances",
+};
 export default function page({ params: { lang } }) {
   return (
     <div className="contain py-16">

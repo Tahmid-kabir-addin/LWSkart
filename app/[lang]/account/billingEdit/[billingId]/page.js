@@ -4,6 +4,11 @@ import BillingUpdateForm from "@/app/components/account/BillingUpdateForm";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Billing Information",
+  description: "E-commerce website for your home appliances",
+};
+
 export default async function page({ params }) {
   const dict = await getDictionary(params.lang);
   const session = await auth();

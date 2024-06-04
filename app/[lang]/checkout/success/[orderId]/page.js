@@ -3,6 +3,12 @@ import { dict } from "@/app/dict/dict";
 import { auth } from "@/auth";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+
+export const metadata = {
+  title: "Order Success!",
+  description: "E-commerce website for your home appliances",
+};
+
 export default async function OrderSuccess({ params: { lang, orderId } }) {
   const session = await auth();
   if (!session) {

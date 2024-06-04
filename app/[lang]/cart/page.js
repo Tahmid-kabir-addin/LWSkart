@@ -6,6 +6,11 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getDictionary } from "../dictionaries/dictionaries";
 
+export const metadata = {
+  title: "Cart - LWSkart",
+  description: "E-commerce website for your home appliances",
+};
+
 export default async function page({ params: { lang } }) {
   const dict = await getDictionary(lang);
   console.log(dict.ci);

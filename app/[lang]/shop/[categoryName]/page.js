@@ -14,6 +14,14 @@ import Link from "next/link";
 //   ];
 // }
 
+export async function generateMetadata({ params: { categoryName } }) {
+  categoryName = decodeURIComponent(categoryName);
+  return {
+    title: "Category - " + categoryName,
+    description: `${categoryName} products category`,
+  };
+}
+
 export default async function page({ params: { categoryName, lang } }) {
   categoryName = decodeURIComponent(categoryName);
   const products = await getProductByCategoryName(categoryName);

@@ -4,6 +4,11 @@ import ShippingUpdateForm from "@/app/components/account/ShippingUpdateForm";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Shipping Information",
+  description: "E-commerce website for your home appliances",
+};
+
 export default async function page({ params }) {
   const dict = await getDictionary(params.lang);
   const session = await auth();

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+
 export default function Page({ params: { lang } }) {
   const query = useSearchParams();
   const router = useRouter();

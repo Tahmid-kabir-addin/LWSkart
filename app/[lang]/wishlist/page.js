@@ -5,6 +5,11 @@ import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Wishlist - LWSkart",
+  description: "E-commerce website for your home appliances",
+};
+
 export default async function page({ params: { lang } }) {
   const session = await auth();
   if (!session) redirect("/login");

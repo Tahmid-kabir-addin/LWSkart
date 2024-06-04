@@ -1,9 +1,17 @@
 import { getDictionary } from "@/app/[lang]/dictionaries/dictionaries";
-import { createShipping, getShippingAddressById } from "@/app/actions/UserActions";
+import {
+  createShipping,
+  getShippingAddressById,
+} from "@/app/actions/UserActions";
 import Modal from "@/app/components/Modal";
 import ShippingUpdateForm from "@/app/components/account/ShippingUpdateForm";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+
+export const metadata = {
+  title: "Shipping Information",
+  description: "E-commerce website for your home appliances",
+};
 
 export default async function page({ params }) {
   const dict = await getDictionary(params.lang);
@@ -13,7 +21,7 @@ export default async function page({ params }) {
   if (params.shippingId !== "undefined") {
     shipping = await getShippingAddressById(params.shippingId);
   } else {
-    shipping = await createShipping()
+    shipping = await createShipping();
   }
   return (
     <Modal>

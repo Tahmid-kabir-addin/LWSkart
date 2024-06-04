@@ -5,6 +5,14 @@ import { House } from "@/public/assets/images/icons/House";
 import { ChevronRight } from "@/public/assets/images/icons/ShevronRight";
 import Link from "next/link";
 
+export async function generateMetadata({ params: { productId } }) {
+  const product = await getProductById(productId);
+  return {
+    title: product?.name,
+    description: `${product?.description}`,
+  };
+}
+
 export default async function page({ params }) {
   const product = await getProductById(params.productId);
   return (

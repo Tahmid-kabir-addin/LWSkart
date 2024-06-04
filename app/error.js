@@ -1,7 +1,12 @@
 "use client";
 import Link from "next/link";
 
-export default function error({error, reset}) {
+export const metadata = {
+  title: "Error! - LWSkart",
+  description: "E-commerce website for your home appliances",
+};
+
+export default function error({ error, reset }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md p-8 bg-white shadow-lg rounded-lg">
