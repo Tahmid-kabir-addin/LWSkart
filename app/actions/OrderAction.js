@@ -1,6 +1,8 @@
 "use server";
 
 import { auth } from "@/auth";
+import prisma from "@/prisma";
+import { ObjectId } from "mongodb";
 import { getUser } from "./UserActions";
 
 export async function createOrder(formData) {
@@ -42,22 +44,25 @@ export async function getUserInfo() {
   }
 }
 
-export async function getRecentOrder() {
+export async function getRecentOrder(orderId) {
   const session = await auth();
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/order/recent`,
-      {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );
-    if (res.ok) {
-      const order = await res.json();
-      return { success: true, order };
-    } else throw new Error(await res.text());
+    // const res = await fetch(
+    //   `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/order/recent`,
+    //   {
+    //     method: "GET",
+    //   }
+    // );
+    // if (res.ok) {
+    //   const order = await res.json();
+    const id = new ObjectId(orderId);
+    const order = await prisma.Order.findUnique({
+      where: {
+        id: id.toString(),
+      },
+    });
+    return { success: true, order };
+    // } else throw new Error(await res.text());
   } catch (error) {
     return { error: error.message };
   }

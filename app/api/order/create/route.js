@@ -1,5 +1,5 @@
+import { OrderPdf } from "@/app/react-print-starter/documents";
 import prisma from "@/prisma";
-import { OrderPdf } from "@/react-print-starter/documents";
 import { compile } from "@fileforge/react-print";
 import { Onedoc } from "@onedoc/client";
 import { ObjectId } from "mongodb";

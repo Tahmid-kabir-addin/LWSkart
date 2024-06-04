@@ -26,10 +26,12 @@ export default function OrderSummary({ lang }) {
     const placeOrder = async () => {
       try {
         const res = await createOrder(data);
+        console.log("🚀 ~ placeOrder ~ res:", res)
         if (res.success) {
           const { order } = res;
+          console.log("🚀 ~ placeOrder ~ order:", order)
           // setLoadingPage(false);
-          router.push(`/checkout/success`);
+          router.push(`/checkout/success/${order.id}`);
         } else {
           // setLoadingPage(false);
           throw new Error(res.error);
