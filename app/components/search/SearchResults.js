@@ -697,7 +697,7 @@ export default function SearchResults({ lang }) {
         <div className="col-span-3">
           <h1 className="text-xl">Search Results for {searchQuery}</h1>
           {!loading ? (
-            <Products products={products} />
+            <Products products={products} lang={lang} />
           ) : (
             <div className="flex items-center justify-center">
               <Loader />
