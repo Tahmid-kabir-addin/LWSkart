@@ -1,4 +1,3 @@
-"use client";
 import SearchResults from "@/app/components/search/SearchResults";
 
 export const metadata = {
